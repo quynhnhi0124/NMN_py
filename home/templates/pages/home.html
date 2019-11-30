@@ -1,7 +1,35 @@
 {% extends "pages/base.html" %}
-
+{% load static %}
 {% block title %}Home{% endblock  %}
-
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<div class="container">
+    <div class="row intro">
+        <div class="col-md-6">
+            <h1>Giới thiệu về trang web</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam nisi eos accusantium eligendi velit deleniti nihil ad deserunt rerum incidunt nulla nemo eius molestiae architecto beatae asperiores doloribus animi.Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam nisi eos accusantium eligendi velit deleniti nihil ad deserunt rerum incidunt nulla nemo eius molestiae architecto beatae asperiores doloribus animi.</p>
+        </div>
+        <div class="col-md-6 img-wrapper">
+            <img src="{% static 'images/stock1.jpg' %}" alt="" class="img-responsive" style="width:100% !important;">
+        </div>
+    </div>
+    <h1 style="text-align: center; width: 100%; margin: 90px 0 45px;">Vì sao chọn học và thi ở <span class="navbar-brand" style="font-family: 'Sans-serif'; font-size: 30px;"><b>. N M N .</b></span>?</h1>
+    <div class="row intro">
+        <div class="col-md-4 benefit">
+            <h5>KHO ĐỀ THI VÀ BÀI TẬP KHỔNG LỒ</h5>
+            <p>Hơn 3.000 đề thi và 50.000 bài tập với mức độ khó dễ phân theo ma trận của Bộ GD, được cập nhật liên tục từ các thầy cô uy tín tại Việt Nam, cùng nhiều đầu sách uy tín khác.</p>
+        </div>
+        <div class="col-md-4 benefit">
+            <h5>KHO ĐỀ THI VÀ BÀI TẬP KHỔNG LỒ</h5>
+            <p>Hơn 3.000 đề thi và 50.000 bài tập với mức độ khó dễ phân theo ma trận của Bộ GD, được cập nhật liên tục từ các thầy cô uy tín tại Việt Nam, cùng nhiều đầu sách uy tín khác.</p>
+        </div>
+        <div class="col-md-4">
+            <h5>ĐỘI NGŨ THẦY CÔ GIÁO HÀNG ĐẦU</h5>
+            <p>Đội ngũ giáo viên là Hiệu trưởng, Tổ trưởng bộ môn từ các trường THPT Chuyên hàng đầu cả nước với nhiều năm liên tiếp nằm trong Ban ra đề thi THPT Quốc Gia sẽ giúp các em định hướng nội dung học hành và luyện tập bám sát định hướng mới năm 2018 của Bộ Giáo dục đào tạo.</p>
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock %}

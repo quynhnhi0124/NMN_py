@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    .signin-form{
+    /* background-color: rgb(255, 179, 136); */
+
+    }
+    .signin-form form{
+        margin-top: 30px;
+        /* background-color: rgb(248, 232, 203); */
+        border-radius: 4px;
+        padding: 30px;
+    }
+    </style>
+</head>
+<body>
+    <div class="row intro signin-form">
+        <div class="container">
+            <div class="col-md-6">
+                <form class="was-validated">
+                    <div class="form-group">
+                        <label for="validationUsername">Tên đăng nhập</label>
+                        <input type="text" class="form-control is-invalid" id="validationUsername" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="validationEmail">Email</label>
+                        <input type="text" class="form-control is-invalid" id="validationEmail" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="validationPassword">Mật khẩu</label>
+                        <input type="password" id="validationPassword" class="form-control is-invalid" pattern=".{8,32}" aria-describedby="passwordHelpBlock" required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Mật khẩu của bạn phải dài từ 8-32 ký tự (không bao gồm các ký tự đặc biệt !)
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="validationPassword">Nhập lại mật khẩu</label>
+                        <input type="password" id="validationPassword" class="form-control is-invalid" pattern=".{8,32}" aria-describedby="passwordHelpBlock" required>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</body>
+</html>

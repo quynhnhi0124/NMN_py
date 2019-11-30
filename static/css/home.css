@@ -1,0 +1,15 @@
+h1{
+    margin: 30px 0;
+}
+.intro{
+    margin:60px 0px;
+}
+.benefit{
+    border-right: 1px solid rgb(255, 94, 0) ;
+}
+.intro p{
+    text-align: justify;
+}
+h5{
+    margin: 30px 0 15px;
+}
