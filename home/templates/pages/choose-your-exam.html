@@ -1,0 +1,57 @@
+{% extends "pages/base.html" %}
+
+{% load static %}
+
+{% block title %}Chọn đề thi{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/choose-your-exam.css' %}">
+
+<div class="container">
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{% static 'images/stock7.jpg' %}" class="card-img img-responsive" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Thông tin tài khoản</h5>
+                    <p class="card-text">Họ và tên: </p>
+                    <p class="card-text">ID:  </p>
+                    <p class="card-text">Tên đăng nhập: </p>
+                    <p class="card-text">Email: </p>
+                    <p class="card-text">Xếp hạng: </p>
+                    <button type="button" class="btn btn-outline-dark">Thay đổi thông tin</button>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr style="background-color: rgb(252, 208, 134);">
+                <th scope="col">Mã đề thi</th>
+                <th scope="col">Độ khó</th>
+                <th scope="col">Số điểm của bạn</th>
+                <th scope="col">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td><button type="button" class="btn btn-outline-danger">Vào thi</button></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td><button type="button" class="btn btn-outline-danger">Vào thi</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -17,3 +17,15 @@ h5{
     text-align: right;
     width:100%; 
 }
+.jumbotron{
+    object-fit: cover;
+    position: relative;
+    margin-right:-15px;
+    width: 100%;
+    border-radius: 0;
+    /* background-size:contain;
+    background-position:center; */
+}
+.jumbotron_content{
+    padding: 120px 0 0 60px;
+}
