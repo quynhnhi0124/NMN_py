@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
+
 
 # Create your views here.
 def index(request):
@@ -43,3 +44,6 @@ def registerView(request):
 def logoutView(request):
 	auth.logout(request)
 	return render(request,'pages/home.html')
+
+def editUserView(request):
+    return render(request,'pages/editUser.html')

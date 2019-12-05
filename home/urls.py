@@ -8,4 +8,9 @@ urlpatterns = [
     path('register/',views.registerView,name="register"),
     path('logout/',views.logoutView,name="logout"),
 
+    path('edit/',views.editUserView,name="edit"),
+    # path('update/',views.updateUserView,name="update"),
+    # path('delete/',views.deleteUserView,name="delete"),
+
+
 ]
