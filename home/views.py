@@ -29,9 +29,11 @@ def loginView(request):
 def registerView(request):
 	if request.method=='POST':
 		username=request.POST['username']
+		first_name=request.POST['first_name']
+		last_name=request.POST['last_name']
 		email=request.POST['email']
 		password=request.POST['password']
-		user=User.objects.create_user(username=username,email=email,password=password)
+		user=User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name)
 		user.save()
 		print('User created')
 		return redirect('/home/login')

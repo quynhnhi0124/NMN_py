@@ -156,6 +156,14 @@
                     {% csrf_token %}
                     <!-- Tạo csrf_token(tránh tấn công xss) khi xử lý form trong Laravel -->
                     <div class="form-group">
+                        <label>First_name</label>
+                        <input type="text" class="form-control" name="first_name" placeholder="First_name" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label>Last_name</label>
+                        <input type="text" class="form-control" name="last_name" placeholder="Last_name" required>
+                    </div><br>
+                    <div class="form-group">
                         <label>Username</label>
                         <input type="text" class="form-control" name="username" placeholder="Username" required>
                     </div><br>
