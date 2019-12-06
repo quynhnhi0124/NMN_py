@@ -1,0 +1,20 @@
+.table-striped tbody tr:nth-child(odd) th, 
+.table-striped tbody tr:nth-child(odd) td {
+   background-color: rgb(255, 236, 202);
+ }
+ .table-striped tbody tr:nth-child(even) th, 
+.table-striped tbody tr:nth-child(even) td {
+   background-color: rgb(255, 221, 162);
+ }
+
+h1{
+    margin: 60px 0;
+}
+table tr{
+    text-align: center;
+}
+.add-btn{
+    /* overflow: auto; */
+    width: 100%;
+    float: right;
+}
