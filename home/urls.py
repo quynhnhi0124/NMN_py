@@ -16,6 +16,11 @@ urlpatterns = [
     path('manage/',views.manageView, name = "manage"),
     path('add/', addQuestion.as_view(), name = "add_question" ),
     # reset password
-    path('password_reset/', PasswordResetView.as_view(), name = 'password_reset')
+    path('password_reset/', PasswordResetView.as_view(), name = 'password_reset'),
+
+    path('edit/',views.editUserView,name="edit"),
+    # path('update/',views.updateUserView,name="update"),
+    # path('delete/',views.deleteUserView,name="delete"),
+
 
 ]

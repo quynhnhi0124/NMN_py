@@ -12,3 +12,5 @@ class Question(models.Model):
 
 def __str__(self):
     return self.Question
+from django.contrib.auth.models import User
+# from PIL import Image

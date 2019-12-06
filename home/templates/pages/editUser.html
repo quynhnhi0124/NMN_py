@@ -1,0 +1,54 @@
+{% extends "pages/base.html" %}
+
+{% load static %}
+
+{% block title %}Chọn đề thi{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/choose-your-exam.css' %}">
+
+<div class="container">
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{% static 'images/stock7.jpg' %}" class="card-img img-responsive" alt="...">
+            </div>
+            <div class="col-md-5">
+            {% if user.is_authenticated %}
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {% comment %} <input type="hidden" name="id" id="id" required maxlength="20" value="{{user.id}}" /> {% endcomment %}
+                    <!-- Tạo csrf_token(tránh tấn công xss) khi xử lý form trong Laravel -->
+                    <div class="form-group">
+                        <label><b>First_name</b></label>
+                        <input type="text" class="form-control" name="first_name" placeholder="First_name" value="{{user.first_name}} " required>
+                    </div><br>
+                    <div class="form-group">
+                        <label><b>Last_name</b></label>
+                        <input type="text" class="form-control" name="last_name" placeholder="Last_name" value="{{user.last_name}} "  required>
+                    </div><br>
+                    <div class="form-group">
+                        <label><b>Username</b></label>
+                        <input type="text" class="form-control" name="username" placeholder="Username" value="{{user.username}} "  readonly>
+                    </div><br>
+                    <div class="form-group">
+                        <label><b>Email</b></label>
+                        <input type="text" class="form-control" name="email" placeholder="Email" value="{{user.email}}"  required>
+                    </div><br>
+                    <div class="form-group">
+                        <label><b>Password</b></label>
+                        <input type="password" class="form-control" name="password" placeholder="Password" value="{{user.password}} " readonly>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" onlick=""><a href="#"></a>Edit</button>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}
