@@ -130,7 +130,12 @@
                         </div>
                     </div>
                 {% else %}
-                    <li class="nav-item"><a href="#">{{user.username}}</a></li>
+                    <div class="dropdown">
+                        <li class="nav-item dropdown-toggle"><a href="#">{{user.username}}</a></li>
+                        <div class="dropdown-content">
+                            <a href="{% url 'edit' %}">Quản lí thông tin</a>
+                        </div>
+                    </div>
                 {% endif %}
                     <li class="nav-item"><a href="{% url 'logout' %}">Logout</a></li>
             </ul>

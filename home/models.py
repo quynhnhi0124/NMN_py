@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Question(models.Model):
@@ -12,5 +13,3 @@ class Question(models.Model):
 
 def __str__(self):
     return self.Question
-from django.contrib.auth.models import User
-# from PIL import Image

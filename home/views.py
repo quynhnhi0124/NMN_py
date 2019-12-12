@@ -7,6 +7,8 @@ from django.contrib.auth.models import User,auth
 from django.contrib.admin.forms import AdminPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from .forms import PostQuestionForm
+from .models import Question
+
 
 
 
@@ -66,6 +68,32 @@ class addQuestion(LoginRequiredMixin,View):
 		frm.save()
 		return HttpResponse("Them cau hoi thanh cong")
 
+def viewQuestion(request):
+	questions = Question.objects.all()
+	return render(request, 'pages/start.html', {'questions':questions})
+
+def editDataQuestion(request,id):
+	if request.user.is_superuser:
+		question =Question.objects.get(id=id)
+		return render(request,'pages/detail.html',{'question':question})
+	else:
+		return redirect("home")
+def updateDataQuestion(request, id):
+   question = Question.objects.get(id = id)
+   question.Question = request.POST.get('Question')
+   question.A = request.POST.get('A')
+   question.B = request.POST.get('B')
+   question.C = request.POST.get('C')
+   question.D = request.POST.get('D')
+   question.Answer = request.POST.get('Answer')
+   question.save()
+   return redirect("start")
+
+
+def deleteDataQuestion(request, id):
+   question = Question.objects.get(id = id)
+   question.delete()
+   return redirect('start')
 
 def manageView(request):
 	if request.user.is_superuser:
@@ -82,3 +110,7 @@ def manageView(request):
 # 		password_changed(password,user)
 def editUserView(request):
     return render(request,'pages/editUser.html')
+
+def detailView(request):
+    return render(request,'pages/detail.html')
+
