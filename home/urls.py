@@ -28,8 +28,11 @@ urlpatterns = [
     # path('update/',views.updateUserView,name="update"),
     # path('delete/',views.deleteUserView,name="delete"),
     path('detail/',views.detailView, name = "detail"),
-    path('start/',views.viewTHPTQG, name = "start"),
     # path('start/',views.viewQuestion, name = "start"),
+
+    # hiển thị giao diện 
+    path('thptqg/',views.viewTHPTQG, name = "thptqg"),
+    path('lop10/',views.viewLop10, name = "lop10"),
 
 
 ]

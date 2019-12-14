@@ -6,8 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User,auth
 from django.contrib.admin.forms import AdminPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
-from .forms import PostQuestionForm, PostTHPTQGForm
-from .models import Question, THPTQG
+from .forms import PostLop10Form, PostTHPTQGForm
+from .models import LOP10, THPTQG
 
 
 
@@ -72,13 +72,13 @@ def viewAccount(request):
     return render(request, 'pages/profile.html')
 
 
-# def viewQuestion(request):
-# 	questions = Question.objects.all()
-# 	return render(request, 'pages/start.html', {'questions':questions})
+def viewLop10(request):
+	questions = LOP10.objects.all()
+	return render(request, 'pages/lop10.html', {'questions':questions})
 
 def viewTHPTQG(request):
 	questions = THPTQG.objects.all()
-	return render(request, 'pages/start.html', {'questions':questions})
+	return render(request, 'pages/thptqg.html', {'questions':questions})
 
 def editDataQuestion(request,id):
 	if request.user.is_superuser:
