@@ -17,7 +17,7 @@
                     <div class="list-group">
                         <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-home"></span>&nbsp TÀI KHOẢN</a>
                         <a href="#" class="list-group-item"><span class="glyphicon glyphicon-zoom-in"></span>&nbsp Thông tin tài khoản</a>
-                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp Chỉnh sửa thông tin</a>
+                        <a href="{% url 'editAccount' %}" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp Chỉnh sửa thông tin</a>
                         <a href="#" class="list-group-item"><span class="glyphicon glyphicon-time"></span>&nbsp Lịch sử thi</a>
                         <a href="#" class="list-group-item"><span class="glyphicon glyphicon-record"></span>&nbsp Đổi mật khẩu</a>
                         <a href="#" class="list-group-item"><span class="glyphicon glyphicon-menu-right"></span>&nbsp Đăng xuất</a>
@@ -38,7 +38,7 @@
                             <label><h4><b>ID: </b></label>&nbsp{{user.id}}</h4>
                         </div>
                         <div>
-                            <label><span class="glyphicon glyphicon-user"></span>&nbsp <h4><b>Tên đăng nhập: </b></label> &nbsp {{user.username}}
+                            <h4><span class="glyphicon glyphicon-user">&nbsp <b>Tên đăng nhập: </b> &nbsp {{user.username}} </span>
                             </h4>
                         </div>
                         <div>
@@ -50,7 +50,7 @@
                             </h4>
                         </div>
                     </div>
-                    <!-- <button type="button" class="btn btn-outline-dark"> <a href="{% url 'edit' %}"> Thay đổi thông tin </a></button> -->
+                    <!-- <button type="button" class="btn btn-outline-dark"> <a href=""> Thay đổi thông tin </a></button> -->
                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 </div>
             </div>
@@ -81,7 +81,7 @@
                     <div class="list-group">
                         <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-home"></span>&nbsp TÀI KHOẢN</a>
                         <a href="#" class="list-group-item"><span class="glyphicon glyphicon-zoom-in"></span>&nbsp Thông tin tài khoản</a>
-                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp Chỉnh sửa thông tin</a>
+                        <a href="{% url 'editAccount' %}" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp Chỉnh sửa thông tin</a>
                         <a href="#" class="list-group-item"><span class="glyphicon glyphicon-time"></span>&nbsp Lịch sử thi</a>
                         <a href="#" class="list-group-item"><span class="glyphicon glyphicon-record"></span>&nbsp Đổi mật khẩu</a>
                         <a href="#" class="list-group-item"><span class="glyphicon glyphicon-menu-right"></span>&nbsp Đăng xuất</a>
@@ -114,7 +114,7 @@
                             </h4>
                         </div>
                     </div>
-                    <!-- <button type="button" class="btn btn-outline-dark"> <a href="{% url 'edit' %}"> Thay đổi thông tin </a></button> -->
+                    <!-- <button type="button" class="btn btn-outline-dark"> <a href=""> Thay đổi thông tin </a></button> -->
                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 </div>
             </div>

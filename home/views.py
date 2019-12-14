@@ -116,8 +116,8 @@ def manageView(request):
 # 	for validator in password_validators:
 # 		password_changed = getattr(validator,'password_changed', lambda *a: None)
 # 		password_changed(password,user)
-def editUserView(request):
-    return render(request,'pages/editUser.html')
+def viewEditAccount(request):
+    return render(request,'pages/editAccount.html')
 
 def detailView(request):
     return render(request,'pages/detail.html')
