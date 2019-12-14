@@ -14,6 +14,8 @@ urlpatterns = [
     path('register/',views.registerView, name = "register"),
     path('logout/',views.logoutView, name = "logout"),
     path('manage/',views.manageView, name = "manage"),
+    path('profile/',views.viewAccount, name = 'profile'),
+
     path('add/', addQuestion.as_view(), name = "add_question" ),
     path('edit/<int:id>',views.editDataQuestion, name = "edit_question" ),
     path('update/<int:id>',views.updateDataQuestion, name = "update_question" ),
@@ -22,11 +24,12 @@ urlpatterns = [
     # reset password
     path('password_reset/', PasswordResetView.as_view(), name = 'password_reset'),
 
-    path('edit/',views.editUserView,name="edit"),
+    path('editAccount/',views.editUserView,name="edit"),
     # path('update/',views.updateUserView,name="update"),
     # path('delete/',views.deleteUserView,name="delete"),
     path('detail/',views.detailView, name = "detail"),
-    path('start/',views.viewQuestion, name = "start"),
+    path('start/',views.viewTHPTQG, name = "start"),
+    # path('start/',views.viewQuestion, name = "start"),
 
 
 ]
