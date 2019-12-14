@@ -8,6 +8,7 @@ from .views import addQuestion
 urlpatterns = [
     path('home/',views.index, name = 'home'),
     path('choose-your-exam/',views.choose, name = 'choose-your-exam'),
+    path('thptqg/',views.thptqg, name = 'thptqg'),
 
     # login and signin
     path('login/',views.loginView, name = "login"),

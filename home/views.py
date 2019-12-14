@@ -7,7 +7,8 @@ from django.contrib.auth.models import User,auth
 from django.contrib.admin.forms import AdminPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from .forms import PostQuestionForm
-from .models import Question
+from .forms import PostTHPTQGForm
+from .models import Question, THPTQG
 
 
 
@@ -18,6 +19,10 @@ def index(request):
 
 def choose(request):
     return render(request, 'pages/choose-your-exam.html')
+
+def thptqg(request):
+	thptqg = THPTQG.objects.only("Question","A","B","C","D")
+	return render(request, 'pages/thptqg.html', {'thptqg':thptqg})
 
 def loginView(request):
 	if request.method == 'POST':
