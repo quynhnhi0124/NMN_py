@@ -17,7 +17,7 @@ def index(request):
     return render(request, 'pages/home.html')
 
 def choose(request):
-    return render(request, 'pages/choose-your-exam.html')
+    return render(request, 'pages/choose-thptqg.html')
 
 def loginView(request):
 	if request.method == 'POST':
@@ -76,9 +76,9 @@ def viewLop10(request):
 	questions = LOP10.objects.all()
 	return render(request, 'pages/lop10.html', {'questions':questions})
 
-def viewTHPTQG(request):
-	questions = THPTQG.objects.all()
-	return render(request, 'pages/thptqg.html', {'questions':questions})
+def viewTHPTQG1(request):
+	questions = THPTQG.objects.filter(Exam_id=1)
+	return render(request, 'pages/thptqg1.html', {'questions':questions})
 
 def editDataQuestion(request,id):
 	if request.user.is_superuser:

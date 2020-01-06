@@ -7,7 +7,7 @@ from .views import addQuestion
 
 urlpatterns = [
     path('home/',views.index, name = 'home'),
-    path('choose-your-exam/',views.choose, name = 'choose-your-exam'),
+    path('choose-thptqg/',views.choose, name = 'choose-thptqg'),
 
     # login and signin
     path('login/',views.loginView, name = "login"),
@@ -31,7 +31,7 @@ urlpatterns = [
     # path('start/',views.viewQuestion, name = "start"),
 
     # hiển thị giao diện 
-    path('thptqg/',views.viewTHPTQG, name = "thptqg"),
+    path('thptqg1/',views.viewTHPTQG1, name = "thptqg1"),
     path('lop10/',views.viewLop10, name = "lop10"),
 
 

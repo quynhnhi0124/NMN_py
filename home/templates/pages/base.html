@@ -15,8 +15,8 @@
     <title>{% block title  %}{% endblock  %} </title>
     <style>
         .contact{
-            background-color: rgb(255, 236, 202);
-            color: #494748;
+            background-color: rgb(11, 15, 34);
+            color: white;
             padding: 8px 0;
             margin-right: 0;
             
@@ -27,7 +27,7 @@
         .contact .nav__right ul li a{
             margin: 0 30px;
             text-decoration: none;
-
+            color: white;
         }
         .menu{
             margin-right: 15px;
@@ -56,7 +56,8 @@
             padding: 12px 8px 0px
         }
         footer{
-            background-color: rgb(255, 236, 202);
+            background-color: rgb(11, 15, 34);
+            color: white;
         }
         .footer-container {
             max-width: 80%;
@@ -74,7 +75,7 @@
         }
         a{
             text-decoration: none;
-            color: #494748;
+            color:white;
         }
         .dropdown-toggle{
             cursor: pointer;
@@ -159,7 +160,7 @@
                         </li>
                         <li class="nav-item col-sm-3">
                         {% if user.is_authenticated %}
-                            <a class="nav-link" href="{% url 'thptqg' %}">Luyện thi THPTQG 2019</a>
+                            <a class="nav-link" href="{% url 'choose-thptqg' %}">Luyện thi THPTQG 2019</a>
                         {% else %}
                             <a class="nav-link" onclick="loginAlert()" href="#">Luyện thi THPTQG 2019</a>
                         {% endif %}
