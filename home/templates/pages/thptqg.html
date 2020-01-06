@@ -1,3 +1,35 @@
+
+{% extends "pages/base.html" %}
+
+{% load static %}
+
+{% block title %}Luyện thi THPTQG 2020{% endblock %}
+
+{% block content %}
+
+<table border="1">
+    <thead>
+        <tr>
+            <td>Question</td>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for thptqg in object_list %}
+            <td>{{ thptqg.Question }}</td>
+            <td>{{ thptqg.A }}</td>
+            <td>{{ thptqg.B }}</td>
+            <td>{{ thptqg.C }}</td>
+            <td>{{ thptqg.D }}</td>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
 {% extends "pages/base.html" %} {% load static %} {% block title %}Chọn đề thi{% endblock %} {% block content %} {% for question in questions %}
 
 <div>
@@ -18,3 +50,4 @@
 </div>
 
 {% endfor %} {% endblock %}
+
