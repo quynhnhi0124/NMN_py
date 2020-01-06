@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Question(models.Model):
+class LOP10(models.Model):
     STT = models.IntegerField()
     Question = models.TextField()
     A = models.CharField(max_length=5000)
@@ -17,6 +17,12 @@ def __str__(self):
 
 class THPTQG(models.Model):
     Code = models.IntegerField()
+
+    return self.LOP10
+
+class THPTQG(models.Model):
+    STT = models.IntegerField()
+
     Question = models.TextField()
     A = models.CharField(max_length=5000)
     B = models.CharField(max_length=5000)
@@ -26,3 +32,6 @@ class THPTQG(models.Model):
 
 def __str__(self):
     return self.THPTQG
+
+    return self.THPTQG
+

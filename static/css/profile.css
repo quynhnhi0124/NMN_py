@@ -1,0 +1,31 @@
+/* .content-block-title h3 {
+    margin: 20px;
+    padding-right: .2rem;
+    border-bottom: .1rem solid var(--o30);
+} */
+
+.card {
+    border: none;
+}
+
+.table-striped tbody tr:nth-child(odd) th,
+.table-striped tbody tr:nth-child(odd) td {
+    background-color: rgb(255, 236, 202);
+}
+
+.table-striped tbody tr:nth-child(even) th,
+.table-striped tbody tr:nth-child(even) td {
+    background-color: rgb(255, 221, 162);
+}
+
+.card-body {
+    margin: 20px;
+}
+
+.col-md-6 {
+    margin-left: 100px;
+}
+
+h5 {
+    margin: 30px 0 15px;
+}

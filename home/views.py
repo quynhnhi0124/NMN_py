@@ -6,9 +6,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User,auth
 from django.contrib.admin.forms import AdminPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
+
 from .forms import PostQuestionForm
 from .forms import PostTHPTQGForm
 from .models import Question, THPTQG
+
+from .forms import PostLop10Form, PostTHPTQGForm
+from .models import LOP10, THPTQG
+
 
 
 
@@ -73,9 +78,17 @@ class addQuestion(LoginRequiredMixin,View):
 		frm.save()
 		return HttpResponse("Them cau hoi thanh cong")
 
-def viewQuestion(request):
-	questions = Question.objects.all()
-	return render(request, 'pages/start.html', {'questions':questions})
+def viewAccount(request):
+    return render(request, 'pages/profile.html')
+
+
+def viewLop10(request):
+	questions = LOP10.objects.all()
+	return render(request, 'pages/lop10.html', {'questions':questions})
+
+def viewTHPTQG(request):
+	questions = THPTQG.objects.all()
+	return render(request, 'pages/thptqg.html', {'questions':questions})
 
 def editDataQuestion(request,id):
 	if request.user.is_superuser:
@@ -113,8 +126,8 @@ def manageView(request):
 # 	for validator in password_validators:
 # 		password_changed = getattr(validator,'password_changed', lambda *a: None)
 # 		password_changed(password,user)
-def editUserView(request):
-    return render(request,'pages/editUser.html')
+def viewEditAccount(request):
+    return render(request,'pages/editAccount.html')
 
 def detailView(request):
     return render(request,'pages/detail.html')
