@@ -7,12 +7,10 @@ from .views import addQuestion
 
 urlpatterns = [
     path('home/',views.index, name = 'home'),
-<<<<<<< HEAD
     path('choose-thptqg/',views.choose, name = 'choose-thptqg'),
-=======
+
     path('choose-your-exam/',views.choose, name = 'choose-your-exam'),
-    path('thptqg/',views.thptqg, name = 'thptqg'),
->>>>>>> 3ec7293f04393518e858d7bd04ce07cccd6cf9ae
+    
 
     # login and signin
     path('login/',views.loginView, name = "login"),
@@ -36,8 +34,10 @@ urlpatterns = [
     # path('start/',views.viewQuestion, name = "start"),
 
     # hiển thị giao diện 
-    path('thptqg1/',views.viewTHPTQG1, name = "thptqg1"),
-    path('lop10/',views.viewLop10, name = "lop10"),
+    # path('thptqg1/',views.viewTHPTQG1, name = "thptqg1"),
+    # path('lop10/',views.viewLop10, name = "lop10"),
 
-
+    
+    path('viewthptqg/',views.viewTHPTQG, name = 'viewthptqg'),
+    path('viewlop10/',views.viewLop10, name = 'viewlop10'),
 ]

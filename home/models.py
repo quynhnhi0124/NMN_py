@@ -2,10 +2,23 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+class Exam(models.Model):
+
+    Name = models.CharField(max_length=100)
+    Type = models.CharField(max_length=25, null=True)
+
+    # def get_absolute_url(self):
+    #     return reverse('add_question', kwargs = {'pk' : self.pk})
+
+    def __str__(self):
+        return self.Name
+
+
 class LOP10(models.Model):
-    # Exam_id = models.ForeignKey(Exam_id, max_length=11, on_delete=models.CASCADE, null=True, blank=True)
-    Exam_id = models.IntegerField()
-    Number = models.IntegerField()
+    Exam= models.ForeignKey(Exam,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
+    
+    
     Question = models.TextField()
     A = models.CharField(max_length=5000)
     B = models.CharField(max_length=5000)
@@ -14,23 +27,11 @@ class LOP10(models.Model):
     Answer = models.CharField(max_length=1)
 
 def __str__(self):
-    return self.Question
-
-
-class THPTQG(models.Model):
-    Code = models.IntegerField()
-
     return self.LOP10
 
 class THPTQG(models.Model):
-<<<<<<< HEAD
-    # Exam_id = models.ForeignKey(Exam_id, max_length=11, on_delete=models.CASCADE, null=True, blank=True)
-    Exam_id = models.IntegerField()
-    Number = models.IntegerField()
-=======
-    STT = models.IntegerField()
-
->>>>>>> 3ec7293f04393518e858d7bd04ce07cccd6cf9ae
+    Exam = models.ForeignKey(Exam,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
+   
     Question = models.TextField()
     A = models.CharField(max_length=5000)
     B = models.CharField(max_length=5000)
@@ -39,7 +40,5 @@ class THPTQG(models.Model):
     Answer = models.CharField(max_length=1)
 
 def __str__(self):
-    return self.THPTQG
-
     return self.THPTQG
 

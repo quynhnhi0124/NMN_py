@@ -7,9 +7,9 @@ from django.contrib.auth.models import User,auth
 from django.contrib.admin.forms import AdminPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 
-from .forms import PostQuestionForm
-from .forms import PostTHPTQGForm
-from .models import Question, THPTQG
+# from .forms import PostQuestionForm
+# from .forms import PostTHPTQGForm
+# from .models import Question, THPTQG
 
 from .forms import PostLop10Form, PostTHPTQGForm
 from .models import LOP10, THPTQG
@@ -25,9 +25,7 @@ def index(request):
 def choose(request):
     return render(request, 'pages/choose-thptqg.html')
 
-def thptqg(request):
-	thptqg = THPTQG.objects.only("Question","A","B","C","D")
-	return render(request, 'pages/thptqg.html', {'thptqg':thptqg})
+
 
 def loginView(request):
 	if request.method == 'POST':
@@ -86,9 +84,9 @@ def viewLop10(request):
 	questions = LOP10.objects.all()
 	return render(request, 'pages/lop10.html', {'questions':questions})
 
-def viewTHPTQG1(request):
-	questions = THPTQG.objects.filter(Exam_id=1)
-	return render(request, 'pages/thptqg1.html', {'questions':questions})
+def viewTHPTQG(request):
+	questions = THPTQG.objects.all()
+	return render(request, 'pages/thptqg.html', {'questions':questions})
 
 def editDataQuestion(request,id):
 	if request.user.is_superuser:
