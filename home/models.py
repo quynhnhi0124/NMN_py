@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-
 class Exam(models.Model):
 
     Name = models.CharField(max_length=100)
@@ -16,9 +15,8 @@ class Exam(models.Model):
 
 
 class LOP10(models.Model):
+
     Exam= models.ForeignKey(Exam,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
-    
-    
     Question = models.TextField()
     A = models.CharField(max_length=5000)
     B = models.CharField(max_length=5000)
@@ -26,12 +24,12 @@ class LOP10(models.Model):
     D = models.CharField(max_length=5000)
     Answer = models.CharField(max_length=1)
 
-def __str__(self):
-    return self.LOP10
+    def __str__(self):
+        return self.Question
 
 class THPTQG(models.Model):
+
     Exam = models.ForeignKey(Exam,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
-   
     Question = models.TextField()
     A = models.CharField(max_length=5000)
     B = models.CharField(max_length=5000)
@@ -39,6 +37,6 @@ class THPTQG(models.Model):
     D = models.CharField(max_length=5000)
     Answer = models.CharField(max_length=1)
 
-def __str__(self):
-    return self.THPTQG
+    def __str__(self):
+        return self.Question
 

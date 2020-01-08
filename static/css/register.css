@@ -1,7 +1,7 @@
 .image-holder {
-    background-image: url("https://i.etsystatic.com/16486627/r/il/1aec05/1401734092/il_794xN.1401734092_imdo.jpg");
+    background-image: url("https://fluencycorp.com/wp-content/uploads/2019/01/hardest-part-learning-english.jpg");
     height: 720px;
-    width: 1050px;
+    width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -13,11 +13,13 @@
 }
 
 .form-inner {
-    background: #9C9C9C;
-    padding-top: 10vh;
-    padding-left: 4vw;
-    padding-right: 4vw;
-    width: 450px;
+    background: rgb(11, 15, 34);
+    width: 520px;
+    height: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 500px;
+    opacity: 0.9;
 }
 
 form {
@@ -26,6 +28,8 @@ form {
 
 .form-header {
     text-align: center;
+    color: white;
+    padding-top: 10px;
 }
 
 h3 {

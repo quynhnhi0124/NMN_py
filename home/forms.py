@@ -1,15 +1,30 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, modelformset_factory, BaseFormSet, inlineformset_factory
+from .models import LOP10, THPTQG, Exam
+from django import forms
 
-# from .models import Question, THPTQG
-from .models import LOP10, THPTQG
-
-
-class PostLop10Form(ModelForm):
+class Lop10Form(ModelForm):
     class Meta:
         model = LOP10
-        fields = ['Exam','Question','A','B','C','D','Answer']
+        fields = ['Question','A','B','C','D','Answer']
 
-class PostTHPTQGForm(ModelForm):
+
+class ThptgqForm(ModelForm):
     class Meta:
         model = THPTQG
-        fields = ['Exam','Question','A','B','C','D','Answer']
+        fields = ['Question','A','B','C','D','Answer']
+
+
+class ExamForm(ModelForm):
+    select = (
+        ('Lop 10', 'Lop 10'),
+        ('THPT', 'THPT'),
+    )
+    Type = forms.ChoiceField(choices = select)
+    class Meta():
+        model = Exam
+        fields = ['Name','Type']
+
+
+Lop10Formset = inlineformset_factory(Exam, LOP10,fields=('id','Question','A','B','C','D','Answer'),can_delete=False,max_num=10)
+ThptqgFormset = inlineformset_factory(Exam, THPTQG,fields=('id','Question','A','B','C','D','Answer'),can_delete=False,max_num=10)
+

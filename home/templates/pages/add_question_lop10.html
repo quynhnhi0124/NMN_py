@@ -1,0 +1,76 @@
+{% extends "pages/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %}Thêm đề thi mới{% endblock  %}
+{% block content %}
+<link rel="shortcut icon" href="{% static 'favicon/favicon.png' %}"/>
+<style>
+    .container{
+        width: 50%;
+    }
+    .custom{
+        /* rows:4; */
+        /* columns:100%; */
+        width: 100%;
+    }
+    .custom1{
+        width: 90%;
+        margin: 15px 0;
+    }
+    .wrapper{
+        margin: 30px 0;
+        /* border-top: 1px solid sandybrown; */
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <h1 style="margin: 60px 0 30px; text-align: center; width: 100%;">Thêm đề thi</h1>
+    </div>
+    <p>LƯU Ý: <br>
+    - Mỗi đề thi bao gồm 10 câu</p>
+    <form action="{% url 'add_question_lop10' Exam_id=Exam_id %}" method="POST" id="add-btn"> 
+        {% csrf_token %}     
+            {{ formset.management_form }}
+            {% for field in formset %}
+                {{ field.id }}
+            <div class="wrapper">
+                {% for hidden in form.hidden_fields %}
+                
+                    {{ hidden }}
+                    
+                {% endfor %}
+                <div class="row">
+                    <div class="question" style="width: 100%; margin: 30px 0;">
+                        Question {{forloop.counter}}: {{ field.Question |add_class:"custom"}}
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-6">
+                        A: {{ field.A |add_class:"custom1"}}
+                    </div>
+                    <div class="col-md-6">
+                        B: {{ field.B |add_class:"custom1"}}
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-md-6">
+                        C: {{ field.C |add_class:"custom1"}}
+                    </div>
+                    <div class="col-md-6">
+                        D: {{ field.D |add_class:"custom1"}}
+                    </div>
+                </div>
+                <div class="row">
+                    Answer: {{ field.Answer |add_class:"custom"}}
+                </div>
+            </div>
+            {% endfor %}
+        <input type="submit" value ="Save" class="btn btn-primary">
+    </form>
+</div>
+{% endblock %}
+<!-- <script>
+$("#add-btn").on('submit', function(event) {
+      alert("Successfully added! ");
+})
+</script> -->

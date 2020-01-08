@@ -8,7 +8,7 @@
     <h1 align=center> Quan ly de thi </h1>
     <div class="row">
         <div class="add-btn">
-            <a href="{% url 'add_question' %}"><button type="button" class="btn btn-outline-danger" style="float: right; margin: 15px 0;"> + New exam </button></a>
+            <a href="{% url 'add_exam' %}"><button type="button" class="btn btn-outline-danger" style="float: right; margin: 15px 0;"> + New exam </button></a>
         </div>
     </div>
     <div class="row">
@@ -16,18 +16,29 @@
             <thead>
                 <tr style="background-color: rgb(252, 208, 134);">
                     <th scope="col">Mã đề thi</th>
+                    <th scope="col">Loại đề</th>
                     <th scope="col">Thao tác</th>
+
                 </tr>
             </thead>
             <tbody>
+                {% for field in exam %}
                 <tr>
-                    <th scope="row">1</th>
-                    <td><button type="button" class="btn btn-outline-danger">Edit</button>&nbsp; &nbsp;<button type="button" class="btn btn-outline-danger">Delete</button></td>
+                    <th scope="row"><a href="{% url 'exam_detail' field.id %}">{{ field.Name }}</a></th>
+                    <th scope="row">{{ field.Type }}</th>
+                    <form action="{% url 'exam_delete' field.id %}" method="POST">
+                        {% csrf_token %}
+                        <td><button type="button" class="btn btn-outline-danger"><a href="#">Edit</a></button>&nbsp; &nbsp;
+                            <input type="submit" value="Delete" class="btn btn-outline-danger">
+                        </td>
+                    </form>
+
                 </tr>
-                <tr>
+                {% endfor %}
+                <!-- <tr>
                     <th scope="row">2</th>
                     <td><button type="button" class="btn btn-outline-danger">Edit</button>&nbsp; &nbsp;<button type="button" class="btn btn-outline-danger">Delete</button></td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>

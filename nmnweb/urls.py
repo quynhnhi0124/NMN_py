@@ -20,5 +20,6 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    # path(r'^choose-your-exam/', include('home.urls')),
     # path('password_reset/', auth_views.PasswordChangeView, name = 'password_reset'),
 ]
