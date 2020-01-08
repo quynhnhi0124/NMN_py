@@ -94,7 +94,7 @@ class ExamCreate(LoginRequiredMixin,View):
 def AddQuestionLop10(request,Exam_id):
 	print("Exam_id lop 10", Exam_id)
 	exam = Exam.objects.get(pk=int(Exam_id))
-	Lop10InlineFormset = inlineformset_factory(Exam, Lop10,fields=('Question','A','B','C','D','Answer'),can_delete=False,max_num=10, extra=10)
+	Lop10InlineFormset = inlineformset_factory(Exam, LOP10,fields=('Question','A','B','C','D','Answer'),can_delete=False,max_num=10, extra=10)
 	if request.method == 'POST':
 		formset = Lop10InlineFormset(request.POST, request.FILES, instance=exam)
 		print (format)
@@ -114,7 +114,7 @@ def AddQuestionThptqg(request,Exam_id):
 	print("aaaaaaaaa")
 	print("Exam_id thptqg", Exam_id)
 	exam = Exam.objects.get(pk=int(Exam_id))
-	ThptqgInlineFormset = inlineformset_factory(Exam, Thptqg,fields=('Question','A','B','C','D','Answer'),can_delete=False,max_num=10, extra=10)
+	ThptqgInlineFormset = inlineformset_factory(Exam, THPTQG,fields=('Question','A','B','C','D','Answer'),can_delete=False,max_num=10, extra=10)
 	if request.method == 'POST':
 		formset = ThptqgInlineFormset(request.POST, request.FILES, instance=exam)
 		print (format)

@@ -28,7 +28,7 @@
     </div>
     <p>LƯU Ý: <br>
     - Mỗi đề thi bao gồm 10 câu</p>
-    <form action="{% url 'add_question' Exam_id=Exam_id %}" method="POST" id="add-btn"> <!--chỗ này sửa thêm cái exam_id giúp a nhé, a đang fix cứng n là 36 để nó chạy được thôi-->
+    <form action="{% url 'add_question_thpt' Exam_id=Exam_id %}" method="POST" id="add-btn"> <!--chỗ này sửa thêm cái exam_id giúp a nhé, a đang fix cứng n là 36 để nó chạy được thôi-->
         {% csrf_token %}     
             {{ formset.management_form }}
             {% for field in formset %}
