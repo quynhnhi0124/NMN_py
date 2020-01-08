@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from .models import Exam, Lop10, Thptqg
+from .models import Exam, LOP10, THPTQG
 
 class Lop10Inline(admin.StackedInline):
-    model = Lop10
+    model = LOP10
 
 class ThptqgInline(admin.StackedInline):
-    model = Thptqg
+    model = THPTQG
 
 class ExamAdmin(admin.ModelAdmin):
 

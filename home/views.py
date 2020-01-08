@@ -9,7 +9,7 @@ from django.contrib.admin.forms import AdminPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from .forms import Lop10Form, ThptgqForm, ExamForm, Lop10Formset, ThptqgFormset
 from django.forms import modelformset_factory, inlineformset_factory, formset_factory
-from .models import Lop10, Thptqg, Exam
+from .models import LOP10, THPTQG, Exam
 from django.urls import reverse_lazy, reverse
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -24,7 +24,7 @@ def index(request):
 
 
 def choose(request):
-	return render(request, 'pages/choose-your-exam.html')
+	return render(request, 'pages/choose-thptqg.html')
 
 
 def viewAccount(request):
@@ -130,6 +130,14 @@ def AddQuestionThptqg(request,Exam_id):
 		return render(request, 'pages/add_question.html', {'formset':formset,'Exam_id':Exam_id})
 
 
+def viewLop10(request):
+	questions = LOP10.objects.all()
+	return render(request, 'pages/lop10.html', {'questions':questions})
+
+def viewTHPTQG(request):
+	questions = THPTQG.objects.all()
+	return render(request, 'pages/thptqg.html', {'questions':questions})
+
 def editDataQuestion(request,id):
 	if request.user.is_superuser:
 		question =Question.objects.get(id=id)
@@ -155,10 +163,16 @@ def exam_delete(request,pk):
 		return redirect('manage')
 	return render(request, 'manage', {'object':obj})
 
+def deleteDataQuestion(request, id):
+   question = Question.objects.get(id = id)
+   question.delete()
+   return redirect('start')
+
 # def exam_detail(request):
 # 	exam_name = Exam.objects.values('Type')
 # 	for name in exam_name:
 # 		if name == 'Lop 10':
+
 
 
 def manageView(request):
@@ -169,13 +183,11 @@ def manageView(request):
 		return redirect("home")
 
 # def password_changed(password ,user = None , password_validators = None):
-
 # 	if password_validators is None :
 # 		password_validators = get_default_validators()
 # 	for validator in password_validators:
 # 		password_changed = getattr(validator,'password_changed', lambda *a: None)
 # 		password_changed(password,user)
-
 def viewEditAccount(request):
     return render(request,'pages/editAccount.html')
 

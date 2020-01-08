@@ -1,0 +1,29 @@
+
+{% extends "pages/base.html" %}
+
+{% load static %}
+
+{% block title %}Luyện thi THPTQG 2020{% endblock %}
+
+{% block content %}
+{% for question in questions %}
+<div>
+    
+    <strong>Câu hỏi: {{question.id}}</strong> {{question.Question}}</br>
+    <input type="checkbox" /> {{question.A}}</br>
+    <input type="checkbox" /> {{question.B}}</br>
+    <input type="checkbox" /> {{question.C}}</br>
+    <input type="checkbox" /> {{question.D}} </br>
+    Đáp án: {{question.Answer}}</br>
+    <ul>
+        <li>
+            <a href=""> Edit</a></br>
+        </li>
+
+
+        <li> <a href="">Delete</a></li>
+    </ul>
+</div>
+{% endfor %}
+{% endblock %}
+

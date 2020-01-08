@@ -1,0 +1,48 @@
+{% extends "pages/base.html" %}
+
+{% load static %}
+
+{% block title %}Chọn đề thi{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/choose-thptqg.css' %}">
+
+<div class="container">
+    <div class="rank">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    {% comment %} <img src="{% static 'http://tonyenglish.vn/uploads/news/2018/1127/1543313917_online-learning-education-without-leaving-home.jpg' %}" class="card-img-top img-responsive" alt="..."> {% endcomment %}
+                    <div class="card-body">
+                        <h5 class="card-title">Đề thi số 1</h5>
+                        <p class="card-text">Đề thi gồm 10 câu. Thời gian làm bài 20 phút.</p>
+                        <a href="{% url 'thptqg1' %}" class="btn btn-dark">Vào thi</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    {% comment %} <img src="{% static 'http://tonyenglish.vn/uploads/news/2018/1127/1543313917_online-learning-education-without-leaving-home.jpg' %}" class="card-img-top img-responsive" alt="..."> {% endcomment %}
+                    <div class="card-body">
+                        <h5 class="card-title">Đề thi số 2</h5>
+                        <p class="card-text">Đề thi gồm 10 câu. Thời gian làm bài 20 phút.</p>
+                        <a href="#" class="btn btn-dark">Vào thi</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    {% comment %} <img src="{% static 'images/stock2.jpg' %}" class="card-img-top img-responsive" alt="..."> {% endcomment %}
+                    <div class="card-body">
+                        <h5 class="card-title">Đề thi số 3</h5>
+                        <p class="card-text">Đề thi gồm 10 câu. Thời gian làm bài 20 phút.</p>
+                        <a href="#" class="btn btn-dark">Vào thi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

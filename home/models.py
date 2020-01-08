@@ -1,7 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
-from django.db import models
 # Create your models here.
 class Exam(models.Model):
 
@@ -14,39 +13,30 @@ class Exam(models.Model):
     def __str__(self):
         return self.Name
 
-class Lop10(models.Model):
-    
-    Exam = models.ForeignKey(Exam,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
+
+class LOP10(models.Model):
+
+    Exam= models.ForeignKey(Exam,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
     Question = models.TextField()
-    A = models.CharField(max_length=3000)
-    B = models.CharField(max_length=3000)
-    C = models.CharField(max_length=3000)
-    D = models.CharField(max_length=3000)
+    A = models.CharField(max_length=5000)
+    B = models.CharField(max_length=5000)
+    C = models.CharField(max_length=5000)
+    D = models.CharField(max_length=5000)
     Answer = models.CharField(max_length=1)
 
     def __str__(self):
-        return self.Question
+        return self.LOP10
 
-    # def exam_name(self): 
-    #     return self.exam.id
-    # exam_name.short_description = "Exam_Name"
+class THPTQG(models.Model):
 
-class Thptqg(models.Model):
-    
     Exam = models.ForeignKey(Exam,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
     Question = models.TextField()
-    A = models.CharField(max_length=3000)
-    B = models.CharField(max_length=3000)
-    C = models.CharField(max_length=3000)
-    D = models.CharField(max_length=3000)
+    A = models.CharField(max_length=5000)
+    B = models.CharField(max_length=5000)
+    C = models.CharField(max_length=5000)
+    D = models.CharField(max_length=5000)
     Answer = models.CharField(max_length=1)
 
     def __str__(self):
-        return self.Question
+        return self.THPTQG
 
-    # def exam_name(self): 
-    #     return self.exam.id
-    # exam_name.short_description = "Exam_Name"
-    
-    # from django.contrib.auth.models import User
-    # from PIL import Image
