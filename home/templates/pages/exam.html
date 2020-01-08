@@ -1,0 +1,70 @@
+{% extends "pages/base.html" %} {% load static %} {% block title %}Chọn đề thi{% endblock %} {% block content %}
+<!-- 
+<form method="POST" action="/update/{{question.id }}">
+    <input type="hidden" name="id" id="id" value="{{question.id}}" /> {% csrf_token %} -->
+<!-- Tạo csrf_token(tránh tấn công xss) khi xử lý form trong Laravel -->
+<div class="container">
+    <!-- <div class="row">
+            <h2>Đề số {{forloop.counter}}:</h2>
+        </div> -->
+    {% for question in lop10 %}
+    <div class="row">
+        Question {{forloop.counter}}: {{question.Question}}
+    </div>
+    <div class="row">
+        {{question.A}}
+    </div>
+    <div class="row">
+        {{question.B}}
+    </div>
+    <div class="row">
+        {{question.C}}
+    </div>
+    <div class="row">
+        {{question.D}}
+    </div>
+    <div class="row">
+        <form action="{% url 'edit_question_lop10' question.id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
+        </form>
+        <form action="{% url 'delete_question_lop10' question.id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
+        </form>
+    </div>
+    <br><br> {% endfor %} {% for question in thptqg %} {% if forloop.counter < 1 %} Đề thi chưa có dữ liệu. Thêm câu hỏi <a href="{% url 'add_question_thptqg' question.Exam_id %}">tại đây.</a>
+        {% endif %}
+        <div class="row">
+            <!-- <h2>Đề số {{question.id}}:</h2> -->
+        </div>
+        <div class="row">
+            Question {{forloop.counter}}: {{question.Question}}
+        </div>
+        <div class="row">
+            {{question.A}}
+        </div>
+        <div class="row">
+            {{question.B}}
+        </div>
+        <div class="row">
+            {{question.C}}
+        </div>
+        <div class="row">
+            {{question.D}}
+        </div>
+        <div class="row">
+        <form action="{% url 'edit_question_thptqg' question.id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
+        </form>
+        <form action="{% url 'delete_question_thptqg' question.id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
+        </form>
+    </div>
+        <br><br> {% endfor %}
+</div>
+
+<!-- </form> -->
+{% endblock %}

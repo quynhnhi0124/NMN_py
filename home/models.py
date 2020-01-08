@@ -25,7 +25,7 @@ class LOP10(models.Model):
     Answer = models.CharField(max_length=1)
 
     def __str__(self):
-        return self.LOP10
+        return self.Question
 
 class THPTQG(models.Model):
 
@@ -38,5 +38,5 @@ class THPTQG(models.Model):
     Answer = models.CharField(max_length=1)
 
     def __str__(self):
-        return self.THPTQG
+        return self.Question
 

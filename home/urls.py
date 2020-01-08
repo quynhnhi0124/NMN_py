@@ -24,15 +24,23 @@ urlpatterns = [
 
 
     path('manage/add/', ExamCreate.as_view(), name = "add_exam" ),
-    path('manage/add_question/lop-10/<int:Exam_id>/', views.AddQuestionLop10, name = "add_question_lop10"),
+
     path('manage/add_question/thptqg/<int:Exam_id>/', views.AddQuestionThptqg, name = "add_question_thpt"),
 
     path('edit_question_lop10/<int:id>',views.editQuestionLop10, name = "edit_question_lop10" ),
     path('update_question_lop10/<int:id>',views.updateQuestionLop10, name = "update_question_lop10" ),
+    path('delete_question_lop10/<int:id>',views.deleteQuestionLop10, name = "delete_question_lop10" ),
 
-    path('delete_question_lop10/<int:id>',views.deleteDataQuestion, name = "delete_question_lop10" ),
+    path('edit_question_thptqg/<int:id>',views.editQuestionTHPTQG, name = "edit_question_thptqg" ),
+    path('update_question_thptqg/<int:id>',views.updateQuestionTHPTQG, name = "update_question_thptqg" ),
+    path('delete_question_thptqg/<int:id>',views.deleteQuestionTHPTQG, name = "delete_question_thptqg" ),
 
  
+
+    path('manage/add_question/thptqg/<int:Exam_id>/', views.AddQuestionThptqg, name = "add_question_thptqg"),
+  
+    path('exam_detail/<int:Exam_id>/', views.exam_detail, name = "exam_detail"),
+
 
     path('manage/delete/<int:pk>/',views.exam_delete, name = 'exam_delete'),
 

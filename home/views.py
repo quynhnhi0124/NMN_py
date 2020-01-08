@@ -109,17 +109,15 @@ def AddQuestionLop10(request,Exam_id):
 	Lop10InlineFormset = inlineformset_factory(Exam, LOP10,fields=('Question','A','B','C','D','Answer'),can_delete=False,max_num=10, extra=10)
 	if request.method == 'POST':
 		formset = Lop10InlineFormset(request.POST, request.FILES, instance=exam)
-		print (format)
 		if formset.is_valid():
-			
 			formset.save()
-			return redirect('add_question/lop-10/',Exam_id=Exam_id)
+			return redirect('manage')
 		else:
 			errors = formset.errors
 			print(errors)
 	else:
 		formset = Lop10InlineFormset(instance=exam)
-		return render(request, 'pages/add_question.html', {'formset':formset,'Exam_id':Exam_id})
+		return render(request, 'pages/add_question_lop10.html', {'formset':formset,'Exam_id':Exam_id})
 
 
 def AddQuestionThptqg(request,Exam_id):
@@ -129,17 +127,16 @@ def AddQuestionThptqg(request,Exam_id):
 	ThptqgInlineFormset = inlineformset_factory(Exam, THPTQG,fields=('Question','A','B','C','D','Answer'),can_delete=False,max_num=10, extra=10)
 	if request.method == 'POST':
 		formset = ThptqgInlineFormset(request.POST, request.FILES, instance=exam)
-		print (format)
 		if formset.is_valid():
 			
 			formset.save()
-			return redirect('add_question/thptqg/',Exam_id=Exam_id)
+			return redirect('manage')
 		else:
 			errors = formset.errors
 			print(errors)
 	else:
 		formset = ThptqgInlineFormset(instance=exam)
-		return render(request, 'pages/add_question.html', {'formset':formset,'Exam_id':Exam_id})
+		return render(request, 'pages/add_question_thptqg.html', {'formset':formset,'Exam_id':Exam_id})
 
 
 def viewLop10(request):
@@ -161,17 +158,60 @@ def updateQuestionLop10(request, id):
    question.D = request.POST.get('D')
    question.Answer = request.POST.get('Answer')
    question.save()
-   return redirect("viewlop10")
+   return redirect("exam_detail")
 
-def deleteDataQuestion(request, id):
+def deleteQuestionLop10(request, id):
    question = LOP10.objects.get(id = id)
    question.delete()
-   return redirect('viewlop10')
+   return redirect('home')
 
+def editQuestionTHPTQG(request,id):
+	if request.user.is_superuser:
+		question=THPTQG.objects.get(id=id)
+		return render(request,'pages/editQuestion.html',{'question':question})
+	else:
+		return redirect("home")
+def updateQuestionTHPTQG(request, id):
+   question = THPTQG.objects.get(id = id)
+   question.Question = request.POST.get('Question')
+   question.A = request.POST.get('A')
+   question.B = request.POST.get('B')
+   question.C = request.POST.get('C')
+   question.D = request.POST.get('D')
+   question.Answer = request.POST.get('Answer')
+   question.save()
+   return redirect("home")
+
+def deleteQuestionTHPTQG(request, id):
+   question = THPTQG.objects.get(id = id)
+   question.delete()
+   return redirect('viewlop10')
 
 def viewTHPTQG(request):
 	questions = THPTQG.objects.all()
 	return render(request, 'pages/thptqg.html', {'questions':questions})
+
+def exam_detail(request,Exam_id):
+	# exam_id = Exam.objects.get(pk = int(id))
+	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
+	thptqg = THPTQG.objects.filter(Exam_id = int(Exam_id))
+	context = {
+		'Exam_id':Exam_id,
+		'lop10':lop10,
+		'thptqg':thptqg,
+	}
+	# exam_type = Exam.objects.values_list('Type', flat = True)
+	# print(exam_type)
+	# exam = 0
+	# for i in exam_type:
+	# 	if i == 'Lop 10':
+	# 		exam = LOP10.objects.all()
+	# 		print(exam)
+	# 		return exam,id
+	# 	if i == 'THPT':
+	# 		exam = THPT.objects.all()
+	# 		return exam,id
+	return render(request, 'pages/exam.html', context)
 
 
 def exam_delete(request,pk):

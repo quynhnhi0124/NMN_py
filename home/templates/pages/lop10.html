@@ -8,14 +8,7 @@
     <input type="checkbox" /> {{question.C}}</br>
     <input type="checkbox" /> {{question.D}} </br>
     Đáp án: {{question.Answer}}</br>
-    <form action="{% url 'edit_question_lop10' question.id %}" method="POST">
-        {% csrf_token %}
-        <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
-    </form>
-    <form action="{% url 'delete_question_lop10' question.id %}" method="POST">
-        {% csrf_token %}
-        <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
-    </form>
+
 </div>
 
 {% endfor %} {% endblock %}
