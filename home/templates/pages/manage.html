@@ -24,11 +24,11 @@
             <tbody>
                 {% for field in exam %}
                 <tr>
-                    <th scope="row">{{ field.Name }}</th>
+                    <th scope="row"><a href="{% url 'exam_detail' field.id %}">{{ field.Name }}</a></th>
                     <th scope="row">{{ field.Type }}</th>
                     <form action="{% url 'exam_delete' field.id %}" method="POST">
                         {% csrf_token %}
-                        <td><button type="button" class="btn btn-outline-danger">Edit</button>&nbsp; &nbsp;
+                        <td><button type="button" class="btn btn-outline-danger"><a href="#">Edit</a></button>&nbsp; &nbsp;
                             <input type="submit" value="Delete" class="btn btn-outline-danger">
                         </td>
                     </form>

@@ -23,11 +23,12 @@ urlpatterns = [
 
     path('manage/add/', ExamCreate.as_view(), name = "add_exam" ),
     path('manage/add_question/lop-10/<int:Exam_id>/', views.AddQuestionLop10, name = "add_question_lop10"),
-    path('manage/add_question/thptqg/<int:Exam_id>/', views.AddQuestionThptqg, name = "add_question_thpt"),
+    path('manage/add_question/thptqg/<int:Exam_id>/', views.AddQuestionThptqg, name = "add_question_thptqg"),
     path('edit/<int:id>',views.editDataQuestion, name = "edit_question" ),
     path('update/<int:id>',views.updateDataQuestion, name = "update_question" ),
     path('delete/<int:id>',views.deleteDataQuestion, name = "delete_question" ),
     path('detail/',views.detailView, name = "detail"),
+    path('exam_detail/<int:Exam_id>/', views.exam_detail, name = "exam_detail"),
 
     path('manage/delete/<int:pk>/',views.exam_delete, name = 'exam_delete'),
 
