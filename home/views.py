@@ -30,6 +30,18 @@ def choose(request):
 def viewAccount(request):
     return render(request, 'pages/profile.html')
 
+def editAccount(request):
+    return render(request,'pages/editAccount.html')
+
+def updateAccount(request, id):
+   question = User.objects.get(id = id)
+   question.first_name = request.POST.get('first_name')
+   question.last_name = request.POST.get('last_name')
+   question.username = request.POST.get('username')
+   question.email = request.POST.get('email')
+   question.save()
+   return redirect("manage")
+
 
 def loginView(request):
 	if request.method == 'POST':
@@ -134,18 +146,14 @@ def viewLop10(request):
 	questions = LOP10.objects.all()
 	return render(request, 'pages/lop10.html', {'questions':questions})
 
-def viewTHPTQG(request):
-	questions = THPTQG.objects.all()
-	return render(request, 'pages/thptqg.html', {'questions':questions})
-
-def editDataQuestion(request,id):
+def editQuestionLop10(request,id):
 	if request.user.is_superuser:
-		question =Question.objects.get(id=id)
-		return render(request,'pages/detail.html',{'question':question})
+		question=LOP10.objects.get(id=id)
+		return render(request,'pages/editQuestion.html',{'question':question})
 	else:
 		return redirect("home")
-def updateDataQuestion(request, id):
-   question = Question.objects.get(id = id)
+def updateQuestionLop10(request, id):
+   question = LOP10.objects.get(id = id)
    question.Question = request.POST.get('Question')
    question.A = request.POST.get('A')
    question.B = request.POST.get('B')
@@ -153,7 +161,17 @@ def updateDataQuestion(request, id):
    question.D = request.POST.get('D')
    question.Answer = request.POST.get('Answer')
    question.save()
-   return redirect("start")
+   return redirect("viewlop10")
+
+def deleteDataQuestion(request, id):
+   question = LOP10.objects.get(id = id)
+   question.delete()
+   return redirect('viewlop10')
+
+
+def viewTHPTQG(request):
+	questions = THPTQG.objects.all()
+	return render(request, 'pages/thptqg.html', {'questions':questions})
 
 
 def exam_delete(request,pk):
@@ -163,10 +181,7 @@ def exam_delete(request,pk):
 		return redirect('manage')
 	return render(request, 'manage', {'object':obj})
 
-def deleteDataQuestion(request, id):
-   question = Question.objects.get(id = id)
-   question.delete()
-   return redirect('start')
+
 
 # def exam_detail(request):
 # 	exam_name = Exam.objects.values('Type')
@@ -188,11 +203,6 @@ def manageView(request):
 # 	for validator in password_validators:
 # 		password_changed = getattr(validator,'password_changed', lambda *a: None)
 # 		password_changed(password,user)
-def viewEditAccount(request):
-    return render(request,'pages/editAccount.html')
 
-def detailView(request):
-    return render(request,'pages/detail.html')
-
-def editUserView(request):
-	return render(request, 'pages/editUser.html')
+# def editUserView(request):
+# 	return render(request, 'pages/editUser.html')
