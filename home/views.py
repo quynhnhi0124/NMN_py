@@ -128,12 +128,14 @@ def AddQuestionThptqg(request,Exam_id):
 
 
 def viewLop10(request):
-	questions = LOP10.objects.all()
+	questions = Exam.objects.filter(Type = "Lop 10")
 	return render(request, 'pages/lop10.html', {'questions':questions})
 
+
 def viewTHPTQG(request):
-	questions = THPTQG.objects.all()
+	questions = Exam.objects.filter(Type = "THPT")
 	return render(request, 'pages/thptqg.html', {'questions':questions})
+
 
 def editDataQuestion(request,id):
 	if request.user.is_superuser:
@@ -141,6 +143,8 @@ def editDataQuestion(request,id):
 		return render(request,'pages/detail.html',{'question':question})
 	else:
 		return redirect("home")
+
+		
 def updateDataQuestion(request, id):
    question = Question.objects.get(id = id)
    question.Question = request.POST.get('Question')
@@ -152,6 +156,7 @@ def updateDataQuestion(request, id):
    question.save()
    return redirect("start")
 
+
 def exam_detail(request,Exam_id):
 	# exam_id = Exam.objects.get(pk = int(id))
 	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
@@ -161,17 +166,6 @@ def exam_detail(request,Exam_id):
 		'lop10':lop10,
 		'thptqg':thptqg,
 	}
-	# exam_type = Exam.objects.values_list('Type', flat = True)
-	# print(exam_type)
-	# exam = 0
-	# for i in exam_type:
-	# 	if i == 'Lop 10':
-	# 		exam = LOP10.objects.all()
-	# 		print(exam)
-	# 		return exam,id
-	# 	if i == 'THPT':
-	# 		exam = THPT.objects.all()
-	# 		return exam,id
 	return render(request, 'pages/exam.html', context)
 
 

@@ -6,24 +6,34 @@
 {% block title %}Luyện thi THPTQG 2020{% endblock %}
 
 {% block content %}
-{% for question in questions %}
-<div>
-    
-    <strong>Câu hỏi: {{question.id}}</strong> {{question.Question}}</br>
-    <input type="checkbox" /> {{question.A}}</br>
-    <input type="checkbox" /> {{question.B}}</br>
-    <input type="checkbox" /> {{question.C}}</br>
-    <input type="checkbox" /> {{question.D}} </br>
-    Đáp án: {{question.Answer}}</br>
-    <ul>
-        <li>
-            <a href=""> Edit</a></br>
-        </li>
+<div class="container">
+    <h1 align=center> Chọn đề thi </h1>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr style="background-color: rgb(252, 208, 134);">
+                    <th scope="col">Mã đề thi</th>
+                    <th scope="col">Loại đề</th>
+                    <th scope="col">Thao tác</th>
 
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in questions %}
+                <tr>
+                    <th scope="row">{{ question.Name }}</a></th>
+                    <th scope="row">Đề thi THPTQG</th>
+                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="#">Vào thi</a></button></th>
 
-        <li> <a href="">Delete</a></li>
-    </ul>
+                </tr>
+                {% endfor %}
+                <!-- <tr>
+                    <th scope="row">2</th>
+                    <td><button type="button" class="btn btn-outline-danger">Edit</button>&nbsp; &nbsp;<button type="button" class="btn btn-outline-danger">Delete</button></td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
 </div>
-{% endfor %}
 {% endblock %}
 
