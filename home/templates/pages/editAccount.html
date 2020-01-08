@@ -21,7 +21,7 @@
                         </h2>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5" style="padding-right:50px;">
                     {% if user.is_authenticated %}
                     <form method="POST" action="">
                         {% csrf_token %} {% comment %} <input type="hidden" name="id" id="id" required maxlength="20" value="{{user.id}}" /> {% endcomment %}

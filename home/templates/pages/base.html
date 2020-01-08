@@ -126,6 +126,7 @@
                         <li class="nav-item dropdown-toggle"><a href="#">Hello, {{user.username}}</a></li>
                         <div class="dropdown-content">
                             <a href="{% url 'manage' %}">Quan ly de thi</a>
+                            <a href="{% url 'profile' %}">Thông tin tài khoản</a>
                         </div>
                     </div>
                 {% else %}
@@ -167,15 +168,12 @@
                         {% comment %} {% else %} {% endcomment %}
                             {% comment %} <a class="nav-link" onclick="loginAlert()" href="#">Luyện thi THPTQG 2019</a> {% endcomment %}
                         {% comment %} {% endif %} {% endcomment %}
-                        </li>
-                        <li class="nav-item col-sm-2">
                         {% comment %} {% if user.is_authenticated %} {% endcomment %}
                             {% comment %} <a class="nav-link" href="{% url 'viewlop10' %}">Luyện thi lớp 10</a> {% endcomment %}
                         {% comment %} {% else %} {% endcomment %}
                             {% comment %} <a class="nav-link" onclick="loginAlert()" href="#">Luyện thi lớp 10</a> {% endcomment %}
                         {% comment %} {% endif %} {% endcomment %}
 
-                        </li>
                         <li class="nav-item col-sm-2">
                             <a class="nav-link" href="#">Bảng thành tích</a>
                         </li>

@@ -1,4 +1,5 @@
 
+
 {% extends "pages/base.html" %}
 
 {% load static %}
@@ -24,7 +25,7 @@
                 <tr>
                     <th scope="row">{{ question.Name }}</a></th>
                     <th scope="row">Đề Thi Lớp 10</th>
-                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'exam' Exam_id=Exam_id %}">Vào thi</a></button></th>
+                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="#">Vào thi</a></button></th>
 
                 </tr>
                 {% endfor %}
@@ -38,4 +39,3 @@
 </div>
 
 {% endblock %}
-
