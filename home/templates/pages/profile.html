@@ -1,0 +1,161 @@
+{% extends "pages/base.html" %} {% load static %} {% block title %}Chọn đề thi{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% if user.is_authenticated %}
+<div class="container">
+    {% if user.is_superuser %}
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-3">
+                <div>
+                    <img src="{% static 'images/stock7.jpg' %}" class="card-img img-responsive" alt="...">
+                </div>
+                <h2 align="center"><strong>{{user.username}}</strong></h2>
+                <div>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-home"></span>&nbsp TÀI KHOẢN</a>
+                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-zoom-in"></span>&nbsp Thông tin tài khoản</a>
+                        <a href="{% url 'editAccount' %}" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp Chỉnh sửa thông tin</a>
+                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-time"></span>&nbsp Lịch sử thi</a>
+                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-record"></span>&nbsp Đổi mật khẩu</a>
+                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-menu-right"></span>&nbsp Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card-body">
+                    <div class="content-block-title">
+                        <h2><b>Thông tin cá nhân</b> </h2>
+                    </div>
+                    <div>
+                        <div>
+                            <label><h4><b>Họ và tên:</b></label> &nbsp {{user.first_name}} &nbsp {{user.last_name}}</h4>
+                        </div>
+                        <div>
+                            <label><h4><b>ID: </b></label>&nbsp{{user.id}}</h4>
+                        </div>
+                        <div>
+                            <h4><span class="glyphicon glyphicon-user">&nbsp <b>Tên đăng nhập: </b> &nbsp {{user.username}} </span>
+                            </h4>
+                        </div>
+                        <div>
+                            <label><h4><b> Email:</b></label>&nbsp {{user.email}}
+                            </h4>
+                        </div>
+                        <div>
+                            <label><h4><b> Xếp hạng:</b></label>&nbsp
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- <button type="button" class="btn btn-outline-dark"> <a href=""> Thay đổi thông tin </a></button> -->
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h5><b>KHO ĐỀ THI VÀ BÀI TẬP KHỔNG LỒ</b></h5>
+                    <p>Hơn 3.000 đề thi và 50.000 bài tập với mức độ khó dễ phân theo ma trận của Bộ GD, được cập nhật liên tục từ các thầy cô uy tín tại Việt Nam, cùng nhiều đầu sách uy tín khác.</p>
+                </div>
+                <div class="info">
+                    <img src="{% static 'images/stock6.jpg' %}" alt="" class="img-responsive" style="width:100% !important;">
+                    <h5><b>ĐỘI NGŨ THẦY CÔ GIÁO HÀNG ĐẦU</b></h5>
+                    <p>Đội ngũ giáo viên là Hiệu trưởng, Tổ trưởng bộ môn từ các trường THPT Chuyên hàng đầu cả nước với nhiều năm liên tiếp nằm trong Ban ra đề thi THPT Quốc Gia sẽ giúp các em định hướng nội dung học hành và luyện tập bám sát định hướng
+                        mới năm 2018 của Bộ Giáo dục đào tạo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-3">
+                <div>
+                    <img src="{% static 'images/stock7.jpg' %}" class="card-img img-responsive" alt="...">
+                </div>
+                <h2 align="center"><strong>{{user.username}}</strong></h2>
+                <div>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-home"></span>&nbsp TÀI KHOẢN</a>
+                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-zoom-in"></span>&nbsp Thông tin tài khoản</a>
+                        <a href="{% url 'editAccount' %}" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp Chỉnh sửa thông tin</a>
+                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-time"></span>&nbsp Lịch sử thi</a>
+                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-record"></span>&nbsp Đổi mật khẩu</a>
+                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-menu-right"></span>&nbsp Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card-body">
+                    <div class="content-block-title">
+                        <h2><b>Thông tin cá nhân</b> </h2>
+                    </div>
+                    <div>
+                        <div>
+                            <label><h4><b>Họ và tên:</b></label> &nbsp {{user.first_name}} &nbsp {{user.last_name}}</h4>
+                        </div>
+                        <div>
+                            <label><h4><b>ID: </b></label>&nbsp{{user.id}}</h4>
+                        </div>
+                        <div>
+                            <label><span class="glyphicon glyphicon-user"></span>&nbsp <h4><b>Tên đăng nhập: </b></label> &nbsp {{user.username}}
+                            </h4>
+                        </div>
+                        <div>
+                            <label><h4><b> Email:</b></label>&nbsp {{user.email}}
+                            </h4>
+                        </div>
+                        <div>
+                            <label><h4><b> Xếp hạng:</b></label>&nbsp
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- <button type="button" class="btn btn-outline-dark"> <a href=""> Thay đổi thông tin </a></button> -->
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h5><b>KHO ĐỀ THI VÀ BÀI TẬP KHỔNG LỒ</b></h5>
+                    <p>Hơn 3.000 đề thi và 50.000 bài tập với mức độ khó dễ phân theo ma trận của Bộ GD, được cập nhật liên tục từ các thầy cô uy tín tại Việt Nam, cùng nhiều đầu sách uy tín khác.</p>
+                </div>
+                <div class="info">
+                    <img src="{% static 'images/stock6.jpg' %}" alt="" class="img-responsive" style="width:100% !important;">
+                    <h5><b>ĐỘI NGŨ THẦY CÔ GIÁO HÀNG ĐẦU</b></h5>
+                    <p>Đội ngũ giáo viên là Hiệu trưởng, Tổ trưởng bộ môn từ các trường THPT Chuyên hàng đầu cả nước với nhiều năm liên tiếp nằm trong Ban ra đề thi THPT Quốc Gia sẽ giúp các em định hướng nội dung học hành và luyện tập bám sát định hướng
+                        mới năm 2018 của Bộ Giáo dục đào tạo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr style="background-color: rgb(252, 208, 134);">
+                <th scope="col">Mã đề thi</th>
+                <th scope="col">Độ khó</th>
+                <th scope="col">Số điểm của bạn</th>
+                <th scope="col">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td><button type="button" class="btn btn-outline-danger">Vào thi</button></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td><button type="button" class="btn btn-outline-danger">Vào thi</button></td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endif %} {% endblock %}

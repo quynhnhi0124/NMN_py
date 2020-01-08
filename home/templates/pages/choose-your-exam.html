@@ -17,12 +17,12 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Thông tin tài khoản</h5>
-                    <p class="card-text">Họ và tên: </p>
-                    <p class="card-text">ID:  </p>
-                    <p class="card-text">Tên đăng nhập: </p>
-                    <p class="card-text">Email: </p>
+                    <p class="card-text">Họ và tên:{{user.first_name}} &nbsp {{user.last_name}} </p>
+                    <p class="card-text">ID: {{user.id}} </p>
+                    <p class="card-text">Tên đăng nhập: {{user.username}} </p>
+                    <p class="card-text">Email: {{user.email}} </p>
                     <p class="card-text">Xếp hạng: </p>
-                    <button type="button" class="btn btn-outline-dark">Thay đổi thông tin</button>
+                    <button type="button" class="btn btn-outline-dark"> <a href="{% url 'edit' %}"> Thay đổi thông tin </a></button>
                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 </div>
             </div>

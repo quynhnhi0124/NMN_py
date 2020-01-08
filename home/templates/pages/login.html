@@ -1,0 +1,158 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="/css/home.css" rel="stylesheet" type='text/css'> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Login</title>
+    <style>
+        .image-holder {
+            background-image: url("https://fluencycorp.com/wp-content/uploads/2019/01/hardest-part-learning-english.jpg");
+            height: 720px;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+        }
+        
+        .form-inner {
+            background:rgb(11, 15, 34);
+            padding-top: 0px;
+            width: 100%;
+            height: 110px;
+        }
+        
+        form {
+            width: 100%;
+        }
+        
+        .form-header {
+            text-align: center;
+        }
+        
+        h3 {
+            text-transform: uppercase;
+            font-size: 50px;
+            font-family: ".VnVogueH";
+        }
+        .form-inner ul li {
+            display: inline-block;
+        }
+        .container .logo {
+            font-family: "Sans-serif";
+            display:inline-block;
+            padding-right: 200px;
+            padding-top: 18px;
+        }
+        .container .login {
+            padding-left: 60px;
+        }
+        
+        .form-control {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            display: block;
+            width: 100%;
+            height: 45px;
+            background: none;
+            padding: 0 19px;
+            color: #fff;
+            font-size: 17px;
+        }
+        
+        .form-control .error {
+            border-color: #fd677a!important;
+            background: url("https://i.etsystatic.com/16486627/r/il/1aec05/1401734092/il_794xN.1401734092_imdo.jpg") no-repeat center right 19px;
+        }
+        
+        .form-control .valid {
+            background: url("https://i.etsystatic.com/16486627/r/il/1aec05/1401734092/il_794xN.1401734092_imdo.jpg") no-repeat center right 19px;
+        }
+        
+        .form-error {
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        button {
+            border: none;
+            width: 100%;
+            height: 46px;
+            border-radius: 22.5px;
+            margin: auto;
+            margin-top: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background: #fff;
+            color: #9C9C9C;
+            text-transform: uppercase;
+            font-size: 17px;
+        }
+        
+        a {
+            float: right;
+            color: #363636;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="image-holder">
+            <div class="form-inner">               
+                <div class="container">
+                    <div class="logo col-sm-4">
+                        <h1>
+                            <a href="{% url 'home' %}" title="Quay về trang chủ" style="text-decoration: none; color: white;">
+                                <p>. N M N .</p>
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="login col-sm-8">
+                        <form class="has-validation-callback" method="POST">
+                            {% csrf_token %}                       
+                            <table cellspacing="0" role="presentation">
+                                <tbody>
+                                    <tr>
+                                        <td style="padding-top: 10px; color: white;"><label>Username</label></td>
+                                        <td style="padding-top: 10px; padding-left: 50px; color: white;"><label>Password</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-bottom: 25px;"><input type="text" class="form-control" name="username" required><input type="checkbox"> Remember me</td>
+                                        <td style="padding-bottom: 25px; padding-left: 50px;"><input type="password" class="form-control" name="password" required><span style="float: left;"><a href="#">Forgot Password?</a></span></td>
+                                        <td style="padding-left: 50px; padding-bottom: 40px;">
+                                            <label class="button">
+                                                <input value="LOG IN" type="submit"><a href="{% url 'login' %}"></a>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>                       
+                        </form> 
+                    </div>                      
+                </div>
+                {% comment %} <form class="has-validation-callback" method="POST">
+                    <div>
+                        <button type="submit"><a href="{% url 'register' %}"></a>Sign up</button>
+                    </div>
+                </form> {% endcomment %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
