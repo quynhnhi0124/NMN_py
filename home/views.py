@@ -154,6 +154,11 @@ def deleteQuestionLop10(request,Exam_id,id):
    return redirect('home')
 
 
+def viewTHPTQG(request):
+	questions = Exam.objects.filter(Type = "THPT")
+	return render(request, 'pages/thptqg.html', {'questions':questions})
+
+
 def AddQuestionThptqg(request,Exam_id):
 	print("aaaaaaaaa")
 	print("Exam_id thptqg", Exam_id)
@@ -172,11 +177,6 @@ def AddQuestionThptqg(request,Exam_id):
 		formset = ThptqgInlineFormset(instance=exam)
 		return render(request, 'pages/add_question_thptqg.html', {'formset':formset,'Exam_id':Exam_id})
 
-
-
-def viewTHPTQG(request):
-	questions = Exam.objects.filter(Type = "THPT")
-	return render(request, 'pages/thptqg.html', {'questions':questions})
 
 
 def editQuestionTHPTQG(request,Exam_id):
