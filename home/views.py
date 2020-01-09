@@ -103,6 +103,11 @@ class ExamCreate(LoginRequiredMixin,View):
 			return HttpResponse("That bai")
 
 
+def viewLop10(request):
+	questions = Exam.objects.filter(Type = "Lop 10")
+	return render(request, 'pages/lop10.html', {'questions':questions})
+
+
 def AddQuestionLop10(request,Exam_id):
 	print("Exam_id lop 10", Exam_id)
 	exam = Exam.objects.get(pk=int(Exam_id))
@@ -120,35 +125,11 @@ def AddQuestionLop10(request,Exam_id):
 		return render(request, 'pages/add_question_lop10.html', {'formset':formset,'Exam_id':Exam_id})
 
 
-def AddQuestionThptqg(request,Exam_id):
-	print("aaaaaaaaa")
-	print("Exam_id thptqg", Exam_id)
-	exam = Exam.objects.get(pk=int(Exam_id))
-	ThptqgInlineFormset = inlineformset_factory(Exam, THPTQG,fields=('Question','A','B','C','D','Answer'),can_delete=False,max_num=10, extra=10)
-	if request.method == 'POST':
-		formset = ThptqgInlineFormset(request.POST, request.FILES, instance=exam)
-		if formset.is_valid():
-			
-			formset.save()
-			return redirect('manage')
-		else:
-			errors = formset.errors
-			print(errors)
-	else:
-		formset = ThptqgInlineFormset(instance=exam)
-		return render(request, 'pages/add_question_thptqg.html', {'formset':formset,'Exam_id':Exam_id})
-
-
-def viewLop10(request):
-	questions = Exam.objects.filter(Type = "Lop 10")
-	return render(request, 'pages/lop10.html', {'questions':questions})
-
-
 def editQuestionLop10(request,Exam_id,id):
 	if request.user.is_superuser:
 		question=LOP10.objects.get(id=id)
-		# exam = LOP10.objects.get( id=Exam_id)
-		return render(request,'pages/editQuestion.html',{'question':question} )
+		exam = LOP10.objects.get(id = Exam_id)
+		return render(request,'pages/editQuestion.html',{'question':question , 'exam':exam})
 	else:
 		return redirect("home")
 
@@ -171,6 +152,26 @@ def deleteQuestionLop10(request,Exam_id,id):
    exam = LOP10.objects.get(id = Exam_id)
    question.delete()
    return redirect('home')
+
+
+def AddQuestionThptqg(request,Exam_id):
+	print("aaaaaaaaa")
+	print("Exam_id thptqg", Exam_id)
+	exam = Exam.objects.get(pk=int(Exam_id))
+	ThptqgInlineFormset = inlineformset_factory(Exam, THPTQG,fields=('Question','A','B','C','D','Answer'),can_delete=False,max_num=10, extra=10)
+	if request.method == 'POST':
+		formset = ThptqgInlineFormset(request.POST, request.FILES, instance=exam)
+		if formset.is_valid():
+			
+			formset.save()
+			return redirect('manage')
+		else:
+			errors = formset.errors
+			print(errors)
+	else:
+		formset = ThptqgInlineFormset(instance=exam)
+		return render(request, 'pages/add_question_thptqg.html', {'formset':formset,'Exam_id':Exam_id})
+
 
 
 def viewTHPTQG(request):
