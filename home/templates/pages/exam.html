@@ -1,6 +1,7 @@
 {% extends "pages/base.html" %} {% load static %} {% block title %}Chọn đề thi{% endblock %} {% block content %}
 
 <div class="container">
+<<<<<<< HEAD
     {% for question in lop10 %}
     <div class="row">
         Question {{forloop.counter}}: {{question.Question}}
@@ -39,31 +40,110 @@
         <div class="row">
             <!-- <h2>Đề số {{question.id}}:</h2> -->
         </div>
+=======
+    {% if user.is_superuser %}
+        {% for question in lop10 %}
+>>>>>>> c9573a201526054bf0c5761b260a024606b29736
         <div class="row">
             Question {{forloop.counter}}: {{question.Question}}
         </div>
         <div class="row">
-            {{question.A}}
+            <input type="checkbox" name="A" value="{{question.A}}" /> &nbsp;A. {{question.A}}
         </div>
         <div class="row">
-            {{question.B}}
+            <input type="checkbox" name="B" value="{{question.B}}" />&nbsp;B. {{question.B}}
         </div>
         <div class="row">
-            {{question.C}}
+            <input type="checkbox" name="C" value="{{question.C}}" />&nbsp;C. {{question.C}}
         </div>
         <div class="row">
+<<<<<<< HEAD
             {{question.D}}
         </div><br> {% if user.is_superuser %}
+=======
+            <input type="checkbox" name="D" value="{{question.D}}" />&nbsp;D. {{question.D}}
+        </div><br>
+>>>>>>> c9573a201526054bf0c5761b260a024606b29736
         <div class="row">
-            <form action="{% url 'edit_question_thptqg' question.Exam_id %}" method="POST">
+            <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
                 {% csrf_token %}
                 <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
             </form>
-            <form action="{% url 'delete_question_thptqg' question.Exam_id %}" method="POST">
+            <form action="{% url 'delete_question_lop10' question.id question.Exam_id %}" method="POST">
                 {% csrf_token %}
                 <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
             </form>
+<<<<<<< HEAD
         </div><br><br> {% endif %}{% endfor %}
+=======
+        </div><br><br> 
+        {% endfor %} 
+        
+        {% for question in thptqg %}
+            <div class="row">
+                Question {{forloop.counter}}: {{question.Question}}
+            </div>
+            <div class="row">
+                A. {{question.A}}
+            </div>
+            <div class="row">
+                B. {{question.B}}
+            </div>
+            <div class="row">
+                C. {{question.C}}
+            </div>
+            <div class="row">
+                D. {{question.D}}
+            </div><br>
+            <div class="row">
+                <form action="{% url 'edit_question_thptqg' question.Exam_id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
+                </form>
+                <form action="{% url 'delete_question_thptqg' question.Exam_id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
+                </form>
+            </div><br><br> 
+        {% endfor %}
+
+    {% else %}
+        {% for question in lop10 %}
+        <div class="row">
+            Question {{forloop.counter}}: {{question.Question}}
+        </div>
+        <div class="row">
+            <input type="checkbox" name="A" value="{{question.A}}" /> &nbsp;A. {{question.A}}
+        </div>
+        <div class="row">
+            <input type="checkbox" name="B" value="{{question.B}}" />&nbsp;B. {{question.B}}
+        </div>
+        <div class="row">
+            <input type="checkbox" name="C" value="{{question.C}}" />&nbsp;C. {{question.C}}
+        </div>
+        <div class="row">
+            <input type="checkbox" name="D" value="{{question.D}}" />&nbsp;D. {{question.D}}
+        </div><br>
+        {% endfor %} 
+        {% for question in thptqg %}
+            <div class="row">
+                Question {{forloop.counter}}: {{question.Question}}
+            </div>
+            <div class="row">
+                <input type="checkbox" name="A" value="{{question.A}}" /> &nbsp;A. {{question.A}}
+            </div>
+            <div class="row">
+                <input type="checkbox" name="B" value="{{question.B}}" />&nbsp;B. {{question.B}}
+            </div>
+            <div class="row">
+                <input type="checkbox" name="C" value="{{question.C}}" />&nbsp;C. {{question.C}}
+            </div>
+            <div class="row">
+                <input type="checkbox" name="D" value="{{question.D}}" />&nbsp;D. {{question.D}}
+            </div><br>
+        {% endfor %}
+    {% endif %}
+>>>>>>> c9573a201526054bf0c5761b260a024606b29736
 </div>
 
 <!-- </form> -->

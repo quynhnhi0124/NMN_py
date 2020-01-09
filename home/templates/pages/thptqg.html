@@ -23,7 +23,7 @@
                 <tr>
                     <th scope="row">{{ question.Name }}</a></th>
                     <th scope="row">Đề thi THPTQG</th>
-                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="#">Vào thi</a></button></th>
+                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'exam_detail' question.id %}">Vào thi</a></button></th>
 
                 </tr>
                 {% endfor %}
