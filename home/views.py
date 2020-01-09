@@ -9,7 +9,7 @@ from django.contrib.admin.forms import AdminPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from .forms import Lop10Form, ThptgqForm, ExamForm, Lop10Formset, ThptqgFormset
 from django.forms import modelformset_factory, inlineformset_factory, formset_factory
-from .models import LOP10, THPTQG, Exam
+from .models import LOP10, THPTQG, Exam,KetQuaDuThi
 from django.urls import reverse_lazy, reverse
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -107,6 +107,15 @@ def viewLop10(request):
 	questions = Exam.objects.filter(Type = "Lop 10")
 	return render(request, 'pages/lop10.html', {'questions':questions})
 
+def detail_Lop10(request,Exam_id):
+	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
+	thptqg = THPTQG.objects.filter(Exam_id = int(Exam_id))
+	context = {
+		'Exam_id':Exam_id,
+		'lop10':lop10,
+		'thptqg':thptqg,
+	}
+	return render(request, 'pages/exam.html', context)
 
 def AddQuestionLop10(request,Exam_id):
 	print("Exam_id lop 10", Exam_id)
@@ -128,7 +137,7 @@ def AddQuestionLop10(request,Exam_id):
 def editQuestionLop10(request,Exam_id,id):
 	if request.user.is_superuser:
 		question=LOP10.objects.get(id=id)
-		exam = LOP10.objects.get(id = Exam_id)
+		exam = Exam.objects.get(id = Exam_id)
 		return render(request,'pages/editQuestion.html',{'question':question , 'exam':exam})
 	else:
 		return redirect("home")

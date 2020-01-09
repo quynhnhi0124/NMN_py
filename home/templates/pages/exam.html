@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <input type="checkbox" name="D" value="{{question.D}}" />&nbsp; {{question.D}}
-    </div><br>
+    </div><br> {% if user.is_superuser %}
     <div class="row">
         <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
             {% csrf_token %}
@@ -26,11 +26,14 @@
             {% csrf_token %}
             <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
         </form>
-    </div><br><br> 
-    {% endfor %} 
-    
-    {% for question in thptqg %}
-    <!-- {% if forloop.counter < 1 %}
+
+
+
+    </div><br><br> {% endif %} {% endfor %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="" class="btn btn-dark"><a href=""></a>KQ</button> {% for question in thptqg %}
+        <!-- {% if forloop.counter < 1 %}
                     <p>Đề thi chưa có dữ liệu. Thêm câu hỏi <a href="{% url 'add_question_thptqg' question.Exam_id %}">tại đây.</a></p>
                 {% endif %} -->
         <div class="row">
@@ -50,7 +53,7 @@
         </div>
         <div class="row">
             {{question.D}}
-        </div><br>
+        </div><br> {% if user.is_superuser %}
         <div class="row">
             <form action="{% url 'edit_question_thptqg' question.Exam_id %}" method="POST">
                 {% csrf_token %}
@@ -60,8 +63,7 @@
                 {% csrf_token %}
                 <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
             </form>
-        </div><br><br> 
-    {% endfor %}
+        </div><br><br> {% endif %}{% endfor %}
 </div>
 
 <!-- </form> -->

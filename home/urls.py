@@ -54,6 +54,7 @@ urlpatterns = [
     # path('delete/',views.deleteUserView,name="delete"),
     path('viewthptqg/',views.viewTHPTQG, name = 'viewthptqg'),
     path('viewlop10/',views.viewLop10, name = 'viewlop10'),
+    path('detail_lop10/<int:Exam_id>/', views.detail_Lop10, name = "detail_lop10"),
 
 
 ]

@@ -27,6 +27,7 @@
                     <th scope="row">{{ field.Type }}</th>
                     <form action="{% url 'exam_delete' field.id %}" method="POST">
                         {% csrf_token %}
+
                         <td><button type="button" class="btn btn-outline-danger"><a href="{% url 'exam_detail' field.id %}">Edit</a></button>&nbsp; &nbsp;
 
 
@@ -34,6 +35,7 @@
 
                         </td>
                     </form>
+                    
 
                 </tr>
                 {% endfor %}
