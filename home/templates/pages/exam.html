@@ -1,68 +1,64 @@
 {% extends "pages/base.html" %} {% load static %} {% block title %}Chọn đề thi{% endblock %} {% block content %}
 
-    <div class="container">
-            {% for question in lop10 %}
-                <div class="row">
-                    Question {{forloop.counter}}: {{question.Question}}
-                </div>
-                <div class="row">
-                    {{question.A}}
-                </div>
-                <div class="row">
-                    {{question.B}}
-                </div>
-                <div class="row">
-                    {{question.C}}
-                </div>
-                <div class="row">
-                    {{question.D}}
-                </div><br>
-                <div class="row">
-                    <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
-                    </form>
-                    <form action="{% url 'delete_question_lop10' question.id question.Exam_id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
-                    </form>
-                </div><br><br>
-            {% endfor %}
-
-            {% for question in thptqg %}
-                <!-- {% if forloop.counter < 1 %}
+<div class="container">
+    {% for question in lop10 %}
+    <div class="row">
+        Question {{forloop.counter}}: {{question.Question}}
+    </div>
+    <div class="row">
+        <input type="checkbox" name="A" value="{{question.A}}" /> &nbsp; {{question.A}}
+    </div>
+    <div class="row">
+        <input type="checkbox" name="B" value="{{question.B}}" />&nbsp; {{question.B}}
+    </div>
+    <div class="row">
+        <input type="checkbox" name="C" value="{{question.C}}" />&nbsp; {{question.C}}
+    </div>
+    <div class="row">
+        <input type="checkbox" name="D" value="{{question.D}}" />&nbsp; {{question.D}}
+    </div><br>
+    <div class="row">
+        <form action="{% url 'edit_question_lop10'  question.id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
+        </form>
+        <form action="{% url 'delete_question_lop10' question.id  %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
+        </form>
+    </div><br><br> {% endfor %} {% for question in thptqg %}
+    <!-- {% if forloop.counter < 1 %}
                     <p>Đề thi chưa có dữ liệu. Thêm câu hỏi <a href="{% url 'add_question_thptqg' question.Exam_id %}">tại đây.</a></p>
                 {% endif %} -->
-                <div class="row">
-                    <!-- <h2>Đề số {{question.id}}:</h2> -->
-                </div>
-                <div class="row">
-                    Question {{forloop.counter}}: {{question.Question}}
-                </div>
-                <div class="row">
-                    {{question.A}}
-                </div>
-                <div class="row">
-                    {{question.B}}
-                </div>
-                <div class="row">
-                    {{question.C}}
-                </div>
-                <div class="row">
-                    {{question.D}}
-                </div><br>
-                <div class="row">
-                    <form action="{% url 'edit_question_thptqg' question.Exam_id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
-                    </form>
-                    <form action="{% url 'delete_question_thptqg' question.Exam_id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
-                    </form>
-                </div><br><br>
-            {% endfor %}
+    <div class="row">
+        <!-- <h2>Đề số {{question.id}}:</h2> -->
     </div>
+    <div class="row">
+        Question {{forloop.counter}}: {{question.Question}}
+    </div>
+    <div class="row">
+        {{question.A}}
+    </div>
+    <div class="row">
+        {{question.B}}
+    </div>
+    <div class="row">
+        {{question.C}}
+    </div>
+    <div class="row">
+        {{question.D}}
+    </div><br>
+    <div class="row">
+        <form action="{% url 'edit_question_thptqg' question.Exam_id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
+        </form>
+        <form action="{% url 'delete_question_thptqg' question.Exam_id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
+        </form>
+    </div><br><br> {% endfor %}
+</div>
 </div>
 
 <!-- </form> -->

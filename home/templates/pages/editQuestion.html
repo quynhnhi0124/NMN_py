@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-md-5" style="padding-right:50px;">
                     {% if user.is_authenticated %}
-                    <form method="POST" action="{%url 'update_question_lop10' question.id exam.Exam_id %}">
+                    <form method="POST" action="{%url 'update_question_lop10' exam.Exam_id question.id  %}">
                         <input type="hidden" name="id" id="id" value="{{question.id}}" /> {% csrf_token %}
                         <!-- Tạo csrf_token(tránh tấn công xss) khi xử lý form trong Laravel -->
                         <div class="form-group">

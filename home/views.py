@@ -147,8 +147,8 @@ def viewLop10(request):
 def editQuestionLop10(request,Exam_id,id):
 	if request.user.is_superuser:
 		question=LOP10.objects.get(id=id)
-		exam = LOP10.objects.get(id = Exam_id)
-		return render(request,'pages/editQuestion.html',{'question':question , 'exam':exam})
+		# exam = LOP10.objects.get( id=Exam_id)
+		return render(request,'pages/editQuestion.html',{'question':question} )
 	else:
 		return redirect("home")
 
