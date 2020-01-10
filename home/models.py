@@ -47,5 +47,5 @@ class Result(models.Model):
     question_thpt = models.ForeignKey(THPTQG,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
     choice = models.TextField(max_length = 100)
     grade = models.IntegerField()
-     def __str__(self):
+    def __str__(self):
         return self.Exam

@@ -1,11 +1,5 @@
+ {% extends "pages/base.html" %} {% load static %} {% block title %}Luyện thi THPTQG{% endblock %} {% block content %}
 
-{% extends "pages/base.html" %}
-
-{% load static %}
-
-{% block title %}Luyện thi THPTQG 2020{% endblock %}
-
-{% block content %}
 <div class="container">
     <h1 align=center> Chọn đề thi </h1>
     <div class="row">
@@ -19,14 +13,31 @@
                 </tr>
             </thead>
             <tbody>
-                {% for question in questions %}
+                {% if user.is_authenticated %} {% for question in questions %}
                 <tr>
-                    <th scope="row">{{ question.Name }}</a></th>
-                    <th scope="row">Đề thi THPTQG</th>
+                    <th scope="row">{{ question.Name }}</a>
+                    </th>
+                    <th scope="row">Đề Thi THPTQG</th>
+{% if user.is_superuser %}
                     <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'exam_detail' question.id %}">Vào thi</a></button></th>
-
+                    {% else %}
+                    
+                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'detail_thptqg' question.id %}">Vào thi</a></button></th>
+                    
+                    {% endif %}
+                    
                 </tr>
                 {% endfor %}
+                {% else %} {% for question in questions %}
+                <tr>
+                    <th scope="row">{{ question.Name }}</a>
+                    </th>
+                    <th scope="row">Đề Thi THPTQG</th>
+                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'login' %}">Vào thi</a></button></th>
+
+                </tr>
+
+                {% endfor %} {% endif %}
                 <!-- <tr>
                     <th scope="row">2</th>
                     <td><button type="button" class="btn btn-outline-danger">Edit</button>&nbsp; &nbsp;<button type="button" class="btn btn-outline-danger">Delete</button></td>
@@ -35,5 +46,5 @@
         </table>
     </div>
 </div>
-{% endblock %}
 
+{% endblock %}

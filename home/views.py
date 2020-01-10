@@ -9,7 +9,7 @@ from django.contrib.admin.forms import AdminPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from .forms import Lop10Form, ThptgqForm, ExamForm, Lop10Formset, ThptqgFormset
 from django.forms import modelformset_factory, inlineformset_factory, formset_factory
-from .models import LOP10, THPTQG, Exam,KetQuaDuThi
+from .models import LOP10, THPTQG, Exam,Result
 from django.urls import reverse_lazy, reverse
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -117,6 +117,21 @@ def detail_Lop10(request,Exam_id):
 	}
 	return render(request, 'pages/exam.html', context)
 
+def viewTHPTQG(request):
+	questions = Exam.objects.filter(Type = "THPTQG")
+	return render(request, 'pages/thptqg.html', {'questions':questions})
+
+def detail_THPTQG(request,Exam_id):
+	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
+	thptqg = THPTQG.objects.filter(Exam_id = int(Exam_id))
+	context = {
+		'Exam_id':Exam_id,
+		'lop10':lop10,
+		'thptqg':thptqg,
+	}
+	return render(request, 'pages/exam_thptqg.html', context)
+
+
 def AddQuestionLop10(request,Exam_id):
 	print("Exam_id lop 10", Exam_id)
 	exam = Exam.objects.get(pk=int(Exam_id))
@@ -162,10 +177,6 @@ def deleteQuestionLop10(request,Exam_id,id):
    question.delete()
    return redirect('home')
 
-
-def viewTHPTQG(request):
-	questions = Exam.objects.filter(Type = "THPT")
-	return render(request, 'pages/thptqg.html', {'questions':questions})
 
 
 def AddQuestionThptqg(request,Exam_id):

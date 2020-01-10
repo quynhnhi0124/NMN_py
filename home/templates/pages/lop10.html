@@ -18,12 +18,14 @@
                     <th scope="row">{{ question.Name }}</a>
                     </th>
                     <th scope="row">Đề Thi Lớp 10</th>
-<<<<<<< HEAD
-                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'detail_lop10' question.id %}">Vào thi</a></button></th>
-=======
+{% if user.is_superuser %}
                     <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'exam_detail' question.id %}">Vào thi</a></button></th>
->>>>>>> c9573a201526054bf0c5761b260a024606b29736
-
+                    {% else %}
+                    
+                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'detail_lop10' question.id %}">Vào thi</a></button></th>
+                    
+                    {% endif %}
+                    
                 </tr>
                 {% endfor %}
                 {% else %} {% for question in questions %}

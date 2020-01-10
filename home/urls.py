@@ -53,6 +53,7 @@ urlpatterns = [
     # path('update/',views.updateUserView,name="update"),
     # path('delete/',views.deleteUserView,name="delete"),
     path('viewthptqg/',views.viewTHPTQG, name = 'viewthptqg'),
+    path('detail_thptqg/<int:Exam_id>/', views.detail_THPTQG, name = "detail_thptqg"),
     path('viewlop10/',views.viewLop10, name = 'viewlop10'),
     path('detail_lop10/<int:Exam_id>/', views.detail_Lop10, name = "detail_lop10"),
 

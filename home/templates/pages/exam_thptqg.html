@@ -1,8 +1,7 @@
 {% extends "pages/base.html" %} {% load static %} {% block title %}Chọn đề thi{% endblock %} {% block content %}
 
 <div class="container">
-
-    {% for question in lop10 %}
+    {% for question in thptqg %}
     <div class="row">
         Question {{forloop.counter}}: {{question.Question}}
     </div>
@@ -34,8 +33,7 @@
     <form action="" method="POST">
         {% csrf_token %}
         <button type="" class="btn btn-dark"><a href=""></a>KQ</button>
+
     </form>
-
-
 </div>
-{% endblock %}
+    {% endblock %}
