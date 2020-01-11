@@ -37,6 +37,12 @@ class ResultForm(ModelForm):
 
 
 
+    class Meta:
+        model = Result
+        if Exam.objects.filter(Type = 'Lop 10'):
+            fields = ['User','Exam','question_lop10','choice','grade']
+        else:
+            fields = ['User','Exam','question_thpt','choice','grade']
 Lop10Formset = inlineformset_factory(Exam, LOP10,fields=('id','Question','A','B','C','D','Answer'),can_delete=False,max_num=10)
 ThptqgFormset = inlineformset_factory(Exam, THPTQG,fields=('id','Question','A','B','C','D','Answer'),can_delete=False,max_num=10)
 

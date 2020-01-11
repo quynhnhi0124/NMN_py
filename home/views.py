@@ -109,6 +109,30 @@ def viewLop10(request):
 	questions = Exam.objects.filter(Type = "Lop 10")
 	return render(request, 'pages/lop10.html', {'questions':questions})
 
+def detail_Lop10(request,Exam_id):
+	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
+	thptqg = THPTQG.objects.filter(Exam_id = int(Exam_id))
+	context = {
+		'Exam_id':Exam_id,
+		'lop10':lop10,
+		'thptqg':thptqg,
+	}
+	return render(request, 'pages/exam.html', context)
+
+def viewTHPTQG(request):
+	questions = Exam.objects.filter(Type = "THPTQG")
+	return render(request, 'pages/thptqg.html', {'questions':questions})
+
+def detail_THPTQG(request,Exam_id):
+	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
+	thptqg = THPTQG.objects.filter(Exam_id = int(Exam_id))
+	context = {
+		'Exam_id':Exam_id,
+		'lop10':lop10,
+		'thptqg':thptqg,
+	}
+	return render(request, 'pages/exam_thptqg.html', context)
+
 
 
 def AddQuestionLop10(request,Exam_id):
@@ -131,7 +155,7 @@ def AddQuestionLop10(request,Exam_id):
 def editQuestionLop10(request,Exam_id,id):
 	if request.user.is_superuser:
 		question=LOP10.objects.get(id=id)
-		exam = LOP10.objects.get(id = Exam_id)
+		exam = Exam.objects.get(id = Exam_id)
 		return render(request,'pages/editQuestion.html',{'question':question , 'exam':exam})
 	else:
 		return redirect("home")
@@ -156,10 +180,6 @@ def deleteQuestionLop10(request,Exam_id,id):
    question.delete()
    return redirect('home')
 
-
-def viewTHPTQG(request):
-	questions = Exam.objects.filter(Type = "THPT")
-	return render(request, 'pages/thptqg.html', {'questions':questions})
 
 
 def AddQuestionThptqg(request,Exam_id):
@@ -215,37 +235,6 @@ def exam_detail(request,Exam_id):
 		'lop10':lop10,
 		'thptqg':thptqg,
 	}
-	# if request.user.is_authenticated:
-	# 	if request.user.is_superuser:
-	# 		return render(request, 'pages/exam.html', context)
-	# 	else:
-	# 		grade = 0
-	# 		if Exam.objects.filter(Type = "Lop 10"):
-	# 			if request.method == 'POST':
-	# 				choice = request.POST.get('{{question.id}}')
-	# 				print("que10 = ",question_lop10)
-	# 				print('aaaaaaaaaaaaaaaaaaa',question_lop10.Answer)
-
-					# print(dapan)
-					# for i in dapan:
-					# 	i.append(list)
-					# 	for j in list:
-							# print(j)
-			# 			if choice == dapan(i):
-			# 				grade +=1
-			# 				return grade
-			# 		Result.objects.create(
-			# 		user = request.user.id,
-			# 		exam = Exam.objects.get(id = Exam_id),
-			# 		question_lop10 = LOP10.objects.get(id = id),
-			# 		choice = request.get('choice'),
-			# 		grade = grade,
-			# 		)
-			# 		return HttpResponse('hoan thanh bai thi')
-			# 	else:
-			# 		return render(request, 'pages/exam.html', context)
-			# elif Exam.objects.filter(Type = "THPT"):
-			# 	return redirect('home')
 	return render(request, 'pages/exam.html', context)
 
 
@@ -284,7 +273,7 @@ class Examm(LoginRequiredMixin,View):
 				)
 				print(result)
 				result.save()
-				return redirect('home')
+			return redirect('home')
 
 
 		# 		if i.id == key:
@@ -334,13 +323,6 @@ def exam_delete(request,pk):
 		obj.delete()
 		return redirect('manage')
 	return render(request, 'manage', {'object':obj})
-
-
-
-# def exam_detail(request):
-# 	exam_name = Exam.objects.values('Type')
-# 	for name in exam_name:
-# 		if name == 'Lop 10':
 
 
 
