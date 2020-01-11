@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf.urls import url
 from . import views
 from django.contrib.auth.views import PasswordResetView
-from .views import ExamCreate, AddQuestionLop10, AddQuestionThptqg
+from .views import ExamCreate, Exam, AddQuestionThptqg, AddQuestionLop10
 
 
 urlpatterns = [
@@ -26,7 +26,7 @@ urlpatterns = [
     path('manage/add/', ExamCreate.as_view(), name = "add_exam" ),
 
     path('manage/add_question/thptqg/<int:Exam_id>/', views.AddQuestionThptqg, name = "add_question_thpt"),
-     path('manage/add_question/thptqg/<int:Exam_id>/', views.AddQuestionThptqg, name = "add_question_thpt"),
+    path('manage/add_question/lop10/<int:Exam_id>/', views.AddQuestionLop10, name = "add_question_lop10"),
 
    path('edit_question_lop10/<int:Exam_id>/<int:id>',views.editQuestionLop10, name = "edit_question_lop10" ),
     path('update_question_lop10/<int:Exam_id>/<int:id>/',views.updateQuestionLop10, name = "update_question_lop10" ),
@@ -48,7 +48,8 @@ urlpatterns = [
     # reset password
     path('password_reset/', PasswordResetView.as_view(), name = 'password_reset'),
 
-    # path('edit/',views.editUserView,name="edit"),
+    path('lam-bai-thi/<int:Exam_id>/', views.Examm.as_view(), name ='vaothi'),
+
 
     # path('update/',views.updateUserView,name="update"),
     # path('delete/',views.deleteUserView,name="delete"),

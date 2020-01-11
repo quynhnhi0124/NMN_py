@@ -1,0 +1,32 @@
+{% extends "pages/base.html" %} {% load static %} {% block title %}Vao thi{% endblock %} {% block content %}
+{{Exam_id}}
+<div class="container">
+    {% if user.is_authenticated %}
+        <form action="#" method="POST">
+            {% csrf_token %}
+                {% for question in lop10 %}
+                    <div class="otpradio">
+                        <div class="row">
+                            Question {{forloop.counter}}: {{question.Question}}
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="{{question.id}}" value="A" /> &nbsp;A. {{question.A}}
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="{{question.id}}" value="B" />&nbsp;B. {{question.B}}
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="{{question.id}}" value="C" />&nbsp;C. {{question.C}}
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="{{question.id}}" value="D" />&nbsp;D. {{question.D}}
+                        </div><br>
+                    </div>
+                    
+                {% endfor %} 
+            <input type="submit" value ="Save" class="btn btn-primary" style="margin: 15px 0 60px;"><br>
+        </form>
+    {% endif %}
+</div>
+
+{% endblock %}

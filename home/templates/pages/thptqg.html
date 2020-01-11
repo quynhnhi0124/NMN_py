@@ -9,9 +9,9 @@
 <div class="container">
     <h1 align=center> Chọn đề thi </h1>
     <div class="row">
-        <table class="table table-striped">
-            <thead>
-                <tr style="background-color: rgb(252, 208, 134);">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
                     <th scope="col">Mã đề thi</th>
                     <th scope="col">Loại đề</th>
                     <th scope="col">Thao tác</th>
@@ -23,7 +23,11 @@
                 <tr>
                     <th scope="row">{{ question.Name }}</a></th>
                     <th scope="row">Đề thi THPTQG</th>
-                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'exam_detail' question.id %}">Vào thi</a></button></th>
+                    {% if user.is_superuser%}
+                        <th scope="row"><button type="button" class="btn btn-dark"><a href="{% url 'exam_detail' question.id %}">Xem đề</a></button></th>
+                    {% else %}
+                        <th scope="row"><button type="button" class="btn btn-dark"><a href="{% url 'vaothi' question.id %}">Vào thi</a></button></th>
+                    {% endif %}
 
                 </tr>
                 {% endfor %}
