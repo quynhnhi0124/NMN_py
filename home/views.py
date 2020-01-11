@@ -155,7 +155,7 @@ def AddQuestionLop10(request,Exam_id):
 def editQuestionLop10(request,Exam_id,id):
 	if request.user.is_superuser:
 		question=LOP10.objects.get(id=id)
-		exam = Exam.objects.get(id = Exam_id)
+		exam = LOP10.objects.get(id = Exam_id)
 		return render(request,'pages/editQuestion.html',{'question':question , 'exam':exam})
 	else:
 		return redirect("home")
@@ -249,31 +249,59 @@ class Examm(LoginRequiredMixin,View):
 		return render(request, 'pages/thi.html', context)
 
 	def post(self,request,Exam_id):
-		
+		lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
 		grade = 0
+		rs=0
+		for i in lop10:
+			for key in request.POST:
+				try:
+					key=int(key)
+				except ValueError:
+					continue
+				if i.id == key:
+					for j in request.POST[f"{key}"]:
+						dapan = LOP10.objects.filter(id=int(key)).values()
+						if i.Answer == j:
+							grade=1
+							rs+=1
+						else:
+							grade=0
+						result = Result(
+							User = request.user,
+							Exam = Exam.objects.get(id = int(Exam_id)),
+							question_lop10 = LOP10.objects.get(id=i.id),
+							choice = j,
+							grade = grade,
+						)
+						result.save()
+		print(rs)
+		return HttpResponse("so diem cua ban la: ",rs)
+
+							
+
+		# grade = 0
 		# for i in lop10:
 			# print(i.id,":",i.Answer)
-		for key,value in request.POST.items():
-			try:
-				key=int(key)
-			except ValueError:
-				continue
-			if Exam.objects.filter(Name = "Lop 10"):
-				lop10 = LOP10.objects.filter(id=int(key)).values()
-				# 	print(" i.id: ",i.id," key: ",key," i.Answer: ",i.Answer," value: ",value)
-					# print(lop10)
-				if lop10[0]['Answer'] == value:
-					grade +=1
-				result = Result(
-					User = request.user,
-					Exam = Exam.objects.get(id = int(Exam_id)),
-					question_lop10 = LOP10.objects.get(id=int(key)),
-					choice = value,
-					grade = grade,
-				)
-				print(result)
-				result.save()
-			return redirect('home')
+		# for key,value in request.POST.items():
+		# 	try:
+		# 		key=int(key)
+		# 	except ValueError:
+		# 		continue
+		# 	if Exam.objects.filter(Name = "Lop 10"):
+		# 		lop10 = LOP10.objects.filter(id=int(key)).values()
+		# 		# 	print(" i.id: ",i.id," key: ",key," i.Answer: ",i.Answer," value: ",value)
+		# 			# print(lop10)
+		# 		if lop10[0]['Answer'] == value:
+		# 			grade +=1
+		# 		result = Result(
+		# 			User = request.user,
+		# 			Exam = Exam.objects.get(id = int(Exam_id)),
+		# 			question_lop10 = LOP10.objects.get(id=int(key)),
+		# 			choice = value,
+		# 			grade = grade,
+		# 		)
+		# 		print(result)
+		# 		result.save()
 
 
 		# 		if i.id == key:
@@ -286,6 +314,7 @@ class Examm(LoginRequiredMixin,View):
 		# for key,value in request.POST.items():
 		# 	print(f"key = {key}")
 		# 	print(f"value = {value}")
+
 		# a = []
 		# for i in question:
 		# 	b = []
