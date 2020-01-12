@@ -1,0 +1,25 @@
+{% extends "pages/base.html" %} 
+{% load static %} {% block title %}Kết quả thi của bạn{% endblock %} 
+{% block content %}
+<div class="container">
+    <div class="row"><h2>Mã đề: {{Exam_id}}</h2></div>
+    <div class="row"><h3>Điểm số của bạn là: {{rs}}</h3></div>
+    {% if user.is_authenticated %}
+        {% for question in lop10 %}
+            <div class="row">Question {{forloop.counter}}: {{question.Question}}</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">A. {{question.A}}</div>
+                    <div class="row">B. {{question.B}}</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">C. {{question.C}}</div>
+                    <div class="row">D. {{question.D}}</div>
+                </div>
+            </div>
+            <div class="row"><b>Đáp án: {{question.Answer}}</b></div><br>  
+        {% endfor %}
+        <button class='btn btn-primary'><a href="{% url 'home' %}">Trở về trang chủ</a></button><br><br>
+    {% endif %}
+</div>
+{% endblock %}

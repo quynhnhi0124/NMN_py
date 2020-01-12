@@ -1,57 +1,50 @@
 {% extends "pages/base.html" %} {% load static %} {% block title %}Chọn đề thi{% endblock %} {% block content %}
-<!-- 
-<form method="POST" action="/update/{{question.id }}">
-    <input type="hidden" name="id" id="id" value="{{question.id}}" /> {% csrf_token %} -->
-    <!-- Tạo csrf_token(tránh tấn công xss) khi xử lý form trong Laravel -->
-    <div class="container">
-        <div class="row">
-            <h2>Đề số {{lop10.Exam_id}}:</h2>
-        </div>
-        {% for question in lop10 %}
-            <div class="row">
-                Question {{forloop.counter}}: {{question.Question}}
-                {% if forloop.counter == 0 %}
-                    Đề thi chưa có dữ liệu. Thêm câu hỏi <a href="{% url 'add_question_lop10' question.Exam_id %}">tại đây.</a>
-                {% endif %}
-            </div>
-            <div class="row">
-                {{question.A}}
-            </div>
-            <div class="row">
-                {{question.B}}
-            </div>
-            <div class="row">
-                {{question.C}}
-            </div>
-            <div class="row">
-                {{question.D}}
-            </div><br><br>
-        {% endfor %}
 
-        {% for question in thptqg %}
-        {% if forloop.counter == 0 %}
-            Đề thi chưa có dữ liệu. Thêm câu hỏi <a href="{% url 'add_question_thptqg' question.Exam_id %}">tại đây.</a>
+<div class="container">
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            {% if lop10 %}
+                {% for question in lop10 %}
+                    <div class="row">Question {{forloop.counter}}: {{question.Question}}</div>
+                    <div class="row">A. {{question.A}}</div>
+                    <div class="row">B. {{question.B}}</div>
+                    <div class="row">C. {{question.C}}</div>
+                    <div class="row">D. {{question.D}}</div><br>
+                    
+                    <div class="row">
+                        <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="" class="btn btn-dark"><a href=""></a>Edit</button><br><br>
+                        </form>            
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <h4>Chưa có dữ liệu để thi</h4>
+                    <button class = 'btn btn-dark'><a href="{% url 'add_question_lop10' Exam_id=Exam_id %}">Thêm câu hỏi</a></button><br><br>
+            {% endif %}
+            <!-- {% if question %}
+                {% for question in thptqg %}
+                    <div class="row">Question {{forloop.counter}}: {{question.Question}}</div>
+                    <div class="row">A. {{question.A}}</div>
+                    <div class="row">B. {{question.B}}</div>
+                    <div class="row">C. {{question.C}}</div>
+                    <div class="row">D. {{question.D}}</div><br>
+                    
+                    <div class="row">
+                        <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
+                        </form>&nbsp;
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h4>Chưa có dữ liệu để thi</h4>
+                <button class = 'btn btn-dark'><a href="{% url 'add_question_lop10' Exam_id=Exam_id %}">Thêm câu hỏi</a></button><br><br>
+            {% endif %}  -->
+        {% else %}
+           <h3>Lỗi. Trở về trang chủ.</h3> 
         {% endif %}
-        <div class="row">
-            <!-- <h2>Đề số {{question.id}}:</h2> -->
-        </div>
-        <div class="row">
-            Question {{forloop.counter}}: {{question.Question}}
-        </div>
-        <div class="row">
-            {{question.A}}
-        </div>
-        <div class="row">
-            {{question.B}}
-        </div>
-        <div class="row">
-            {{question.C}}
-        </div>
-        <div class="row">
-            {{question.D}}
-        </div><br><br>
-    {% endfor %}
-    </div>
-    
+    {% endif %}
+</div>
 <!-- </form> -->
 {% endblock %}

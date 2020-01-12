@@ -1,29 +1,47 @@
+ {% extends "pages/base.html" %} {% load static %} {% block title %}Luyện thi THPTQG{% endblock %} {% block content %}
 
-{% extends "pages/base.html" %}
+<div class="container">
+    <h1 align=center> Chọn đề thi </h1>
+    <div class="row">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Mã đề thi</th>
+                    <th scope="col">Loại đề</th>
+                    <th scope="col">Thao tác</th>
 
-{% load static %}
+                </tr>
+            </thead>
+            <tbody>
+                {% if user.is_authenticated %} {% for question in questions %}
+                <tr>
+                    <th scope="row">{{ question.Name }}</a></th>
+                    <th scope="row">Đề thi THPTQG</th>
+                    {% if user.is_superuser%}
+                        <th scope="row"><button type="button" class="btn btn-dark"><a href="{% url 'exam_detail' question.id %}">Xem đề</a></button></th>
+                    {% else %}
+                        <th scope="row"><button type="button" class="btn btn-dark"><a href="{% url 'vaothi-thpt' question.id %}">Vào thi</a></button></th>
+                    {% endif %}
 
-{% block title %}Luyện thi THPTQG 2020{% endblock %}
+                </tr>
+                {% endfor %}
+                {% else %} {% for question in questions %}
+                <tr>
+                    <th scope="row">{{ question.Name }}</a>
+                    </th>
+                    <th scope="row">Đề Thi THPTQG</th>
+                    <th scope="row"><button type="button" class="btn btn-outline-danger"><a href="{% url 'login' %}">Vào thi</a></button></th>
 
-{% block content %}
-{% for question in questions %}
-<div>
-    
-    <strong>Câu hỏi: {{question.id}}</strong> {{question.Question}}</br>
-    <input type="checkbox" /> {{question.A}}</br>
-    <input type="checkbox" /> {{question.B}}</br>
-    <input type="checkbox" /> {{question.C}}</br>
-    <input type="checkbox" /> {{question.D}} </br>
-    Đáp án: {{question.Answer}}</br>
-    <ul>
-        <li>
-            <a href=""> Edit</a></br>
-        </li>
+                </tr>
 
-
-        <li> <a href="">Delete</a></li>
-    </ul>
+                {% endfor %} {% endif %}
+                <!-- <tr>
+                    <th scope="row">2</th>
+                    <td><button type="button" class="btn btn-outline-danger">Edit</button>&nbsp; &nbsp;<button type="button" class="btn btn-outline-danger">Delete</button></td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
 </div>
-{% endfor %}
-{% endblock %}
 
+{% endblock %}

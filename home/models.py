@@ -40,3 +40,15 @@ class THPTQG(models.Model):
     def __str__(self):
         return self.Question
 
+class Result(models.Model):
+    User = models.ForeignKey(User, max_length = 11, on_delete = models.CASCADE, null = True, blank =True)
+    Exam = models.ForeignKey(Exam,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
+    question_lop10 = models.ForeignKey(LOP10,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
+    question_thpt = models.ForeignKey(THPTQG,max_length=11, on_delete=models.CASCADE, null=True, blank=True)
+    choice = models.TextField(max_length = 100)
+    grade = models.IntegerField() 
+    def __str__(self):
+        return self.Exam
+
+
+

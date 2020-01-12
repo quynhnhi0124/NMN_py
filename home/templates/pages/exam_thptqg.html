@@ -1,0 +1,39 @@
+{% extends "pages/base.html" %} {% load static %} {% block title %}Chọn đề thi{% endblock %} {% block content %}
+
+<div class="container">
+    {% for question in thptqg %}
+    <div class="row">
+        Question {{forloop.counter}}: {{question.Question}}
+    </div>
+    <div class="row">
+        <input type="checkbox" name="A" value="{{question.A}}" /> &nbsp; {{question.A}}
+    </div>
+    <div class="row">
+        <input type="checkbox" name="B" value="{{question.B}}" />&nbsp; {{question.B}}
+    </div>
+    <div class="row">
+        <input type="checkbox" name="C" value="{{question.C}}" />&nbsp; {{question.C}}
+    </div>
+    <div class="row">
+        <input type="checkbox" name="D" value="{{question.D}}" />&nbsp; {{question.D}}
+    </div><br> {% if user.is_superuser %}
+    <div class="row">
+        <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
+        </form>
+        <form action="{% url 'delete_question_lop10' question.id question.Exam_id %}" method="POST">
+            {% csrf_token %}
+            <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
+        </form>
+    </div>
+
+    {% endif %} {% endfor %}
+    <br><br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="" class="btn btn-dark"><a href=""></a>KQ</button>
+
+    </form>
+</div>
+    {% endblock %}
