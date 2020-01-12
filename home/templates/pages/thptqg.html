@@ -20,7 +20,7 @@
                     {% if user.is_superuser%}
                         <th scope="row"><button type="button" class="btn btn-dark"><a href="{% url 'exam_detail' question.id %}">Xem đề</a></button></th>
                     {% else %}
-                        <th scope="row"><button type="button" class="btn btn-dark"><a href="{% url 'vaothi' question.id %}">Vào thi</a></button></th>
+                        <th scope="row"><button type="button" class="btn btn-dark"><a href="{% url 'vaothi-thpt' question.id %}">Vào thi</a></button></th>
                     {% endif %}
 
                 </tr>

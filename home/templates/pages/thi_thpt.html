@@ -1,10 +1,12 @@
 {% extends "pages/base.html" %} {% load static %} {% block title %}Vao thi{% endblock %} {% block content %}
-{{Exam_id}}
+
 <div class="container">
+    <h2>Đề thi số {{Exam_id}}</h2>
     {% if user.is_authenticated %}
         <form action="#" method="POST">
             {% csrf_token %}
-                {% for question in lop10 %}
+            {% if thptqg %}
+                {% for question in thptqg %}
                     <div class="otpradio">
                         <div class="row">
                             Question {{forloop.counter}}: {{question.Question}}
@@ -21,10 +23,10 @@
                         <div class="row">
                             <input type="radio" name="{{question.id}}" value="D" />&nbsp;D. {{question.D}}
                         </div><br>
-                    </div>
-                    
+                    </div>   
                 {% endfor %} 
-            <input type="submit" value ="Save" class="btn btn-primary" style="margin: 15px 0 60px;"><br>
+                <button class="btn btn-primary" type="submit"><a href="{% url 'ket-qua-thi-thpt' Exam_id=Exam_id %}">Nộp bài</a></button><br><br>
+            {% endif %}
         </form>
     {% endif %}
 </div>

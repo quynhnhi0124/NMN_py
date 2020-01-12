@@ -13,29 +13,13 @@
     <div class="row">
         <h1 style="margin: 60px 0 30px; text-align: center; width: 100%;">Thêm đề thi</h1>
     </div>
-        <form action="{% url 'add_exam' %}" method="POST" id="add-btn">
+        <center><form action="{% url 'add_exam' %}" method="POST" id="add-btn">
             {% csrf_token %}
-            <!-- {% for field in add_exam %} sai đoạn duyệt này -->
-            <!-- <label for="name">Name: </label>
-            <input id="name" type="text" name="exam_name" maxlength="100" value="{{ field.Name }}" required> -->
-                Name:{{ add_exam.Name }}
-                Type : {{ add_exam.Type }}
-                <!-- Name: {{ form.Name }} -->
-
-            <!-- {% endfor %}                            sai đoạn duyệt này -->
-            <!-- <div class="row">
-                <div class="col-md-3">Loại đề thi: </div>
-                <div class="form-check col-md-3">
-                    <input class="form-check-input" type="checkbox" value="Lop 10" id="lop10" name="exam_type">
-                    <label class="form-check-label" for="lop10">Lớp 10</label>
-                </div>
-                <div class="form-check col-md-3">
-                    <input class="form-check-input" type="checkbox" value="THPT" id="thpt" name="exam_type">
-                    <label class="form-check-label" for="thpt">THPT</label>
-                </div>
-            </div> -->
-            <input type="submit" value ="Save" class="btn btn-primary" style="margin: 15px 0 60px;"> 
-        </form>
+            <strong>Name:</strong> {{ add_exam.Name }}
+            <strong>Type:</strong> {{ add_exam.Type }}
+            <br>
+            <input type="submit" value ="Save" class="btn btn-dark" style="margin: 15px 0 60px;"> 
+        </form></center>
 
     
 </div>

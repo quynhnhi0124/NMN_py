@@ -1,0 +1,32 @@
+{% extends "pages/base.html" %} {% load static %} {% block title %}Vao thi{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/exam.css' %}">
+<div class="container">
+    <center><h2>Đề thi số {{Exam_id}}</h2></center>
+    {% if user.is_authenticated %}
+        <form action="{% url 'ket-qua-thi-lop10' Exam_id=Exam_id %}" method="POST">
+            {% csrf_token %}
+                {% for question in lop10 %}
+                    <div class="otpradio">
+                        <div class="row">
+                            Question {{forloop.counter}}: {{question.Question}}
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="{{question.id}}" value="A" /> &nbsp;A. {{question.A}}
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="{{question.id}}" value="B" />&nbsp;B. {{question.B}}
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="{{question.id}}" value="C" />&nbsp;C. {{question.C}}
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="{{question.id}}" value="D" />&nbsp;D. {{question.D}}
+                        </div><br>
+                    </div>
+                {% endfor %}
+            <button class="btn btn-primary" type="submit">Nộp bài</button><br><br>
+        </form>
+    {% endif %}
+</div>
+
+{% endblock %}

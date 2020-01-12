@@ -3,43 +3,44 @@
 <div class="container">
     {% if user.is_authenticated %}
         {% if user.is_superuser %}
-            {% for question in lop10 %}
-                <div class="row">Question {{forloop.counter}}: {{question.Question}}</div>
-                <div class="row">A. {{question.A}}</div>
-                <div class="row">B. {{question.B}}</div>
-                <div class="row">C. {{question.C}}</div>
-                <div class="row">D. {{question.D}}</div><br>
-                
-                <div class="row">
-                    <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
-                    </form>            
-                    <form action="{% url 'delete_question_lop10' question.id question.Exam_id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
-                    </form>
-                </div>
-            {% endfor %} 
-        
-            {% for question in thptqg %}
-                <div class="row">Question {{forloop.counter}}: {{question.Question}}</div>
-                <div class="row">A. {{question.A}}</div>
-                <div class="row">B. {{question.B}}</div>
-                <div class="row">C. {{question.C}}</div>
-                <div class="row">D. {{question.D}}</div><br>
-                
-                <div class="row">
-                    <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
-                    </form>&nbsp;
-                    <form action="{% url 'delete_question_lop10' question.id question.Exam_id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="" class="btn btn-dark"><a href=""></a>Delete</button>
-                    </form>
-                </div>
-            {% endfor %} 
+            {% if lop10 %}
+                {% for question in lop10 %}
+                    <div class="row">Question {{forloop.counter}}: {{question.Question}}</div>
+                    <div class="row">A. {{question.A}}</div>
+                    <div class="row">B. {{question.B}}</div>
+                    <div class="row">C. {{question.C}}</div>
+                    <div class="row">D. {{question.D}}</div><br>
+                    
+                    <div class="row">
+                        <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="" class="btn btn-dark"><a href=""></a>Edit</button><br><br>
+                        </form>            
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <h4>Chưa có dữ liệu để thi</h4>
+                    <button class = 'btn btn-dark'><a href="{% url 'add_question_lop10' Exam_id=Exam_id %}">Thêm câu hỏi</a></button><br><br>
+            {% endif %}
+            <!-- {% if question %}
+                {% for question in thptqg %}
+                    <div class="row">Question {{forloop.counter}}: {{question.Question}}</div>
+                    <div class="row">A. {{question.A}}</div>
+                    <div class="row">B. {{question.B}}</div>
+                    <div class="row">C. {{question.C}}</div>
+                    <div class="row">D. {{question.D}}</div><br>
+                    
+                    <div class="row">
+                        <form action="{% url 'edit_question_lop10' question.Exam_id question.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="" class="btn btn-dark"><a href=""></a>Edit</button>
+                        </form>&nbsp;
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h4>Chưa có dữ liệu để thi</h4>
+                <button class = 'btn btn-dark'><a href="{% url 'add_question_lop10' Exam_id=Exam_id %}">Thêm câu hỏi</a></button><br><br>
+            {% endif %}  -->
         {% else %}
            <h3>Lỗi. Trở về trang chủ.</h3> 
         {% endif %}

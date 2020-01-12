@@ -21,7 +21,8 @@ from django.db import models
 
 
 
-# Create your views here.
+# Account related, front
+
 def index(request):
 	return render(request, 'pages/home.html')
 
@@ -36,14 +37,14 @@ def viewAccount(request):
 def editAccount(request):
     return render(request,'pages/editAccount.html')
 
-def updateAccount(request, id):
-   question = User.objects.get(id = id)
-   question.first_name = request.POST.get('first_name')
-   question.last_name = request.POST.get('last_name')
-   question.username = request.POST.get('username')
-   question.email = request.POST.get('email')
-   question.save()
-   return redirect("manage")
+def updateAccount(request,id):
+   user = User.objects.get(id =id)
+   user.first_name= request.POST.get('first_name')
+   user.last_name = request.POST.get('last_name')
+   user.username = request.POST.get('username')
+   user.email = request.POST.get('email')
+   user.save()
+   return render(request, 'pages/profile.html', {'user': user})
 
 
 def loginView(request):
@@ -74,7 +75,7 @@ def registerView(request):
 			first_name = first_name, last_name = last_name, username = username, email = email, password = password)
 		user.save()
 		print('User created')
-		return redirect('/home/login')
+		return redirect('/login')
 	else:
 		return render(request, 'pages/register.html')
 
@@ -106,8 +107,11 @@ class ExamCreate(LoginRequiredMixin,View):
 			return HttpResponse("That bai")
 
 def viewLop10(request):
-	questions = Exam.objects.filter(Type = "Lop 10")
-	return render(request, 'pages/lop10.html', {'questions':questions})
+	if request.user.is_authenticated:
+		questions = Exam.objects.filter(Type = "Lop 10")
+		return render(request, 'pages/lop10.html', {'questions':questions})
+	else: 
+		return HttpResponse("Moi ban dang nhap")
 
 def detail_Lop10(request,Exam_id):
 	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
@@ -120,8 +124,11 @@ def detail_Lop10(request,Exam_id):
 	return render(request, 'pages/exam.html', context)
 
 def viewTHPTQG(request):
-	questions = Exam.objects.filter(Type = "THPTQG")
-	return render(request, 'pages/thptqg.html', {'questions':questions})
+	if request.user.is_authenticated:
+		questions = Exam.objects.filter(Type = "THPT")
+		return render(request, 'pages/thptqg.html', {'questions':questions})
+	else: 
+		return HttpResponse("Moi ban dang nhap")
 
 def detail_THPTQG(request,Exam_id):
 	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
@@ -149,7 +156,7 @@ def AddQuestionLop10(request,Exam_id):
 			print(errors)
 	else:
 		formset = Lop10InlineFormset(instance=exam)
-		return render(request, 'pages/add_question_lop10.html', {'formset':formset,'Exam_id':Exam_id})
+	return render(request, 'pages/add_question_lop10.html', {'formset':formset,'Exam_id':Exam_id})
 
 
 def editQuestionLop10(request,Exam_id,id):
@@ -171,14 +178,7 @@ def updateQuestionLop10(request,id, Exam_id):
    question.Answer = request.POST.get('Answer')
    question.save()
    exam = LOP10.objects.get(id = Exam_id)
-   return render(request, 'pages/exam.html', {'Exam_id':Exam_id})
-
-
-def deleteQuestionLop10(request,Exam_id,id):
-   question = LOP10.objects.get(id=id)
-   exam = LOP10.objects.get(id = Exam_id)
-   question.delete()
-   return redirect('home')
+   return redirect('manage')
 
 
 
@@ -221,11 +221,6 @@ def updateQuestionTHPTQG(request, Exam_id):
    question.save()
    return redirect("home")
 
-def deleteQuestionTHPTQG(request, id):
-   question = THPTQG.objects.get(id = id)
-   question.delete()
-   return redirect('viewlop10')
-
 
 def exam_detail(request,Exam_id):
 	lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
@@ -238,113 +233,87 @@ def exam_detail(request,Exam_id):
 	return render(request, 'pages/exam.html', context)
 
 
-class Examm(LoginRequiredMixin,View):
+class ExamForLop10(LoginRequiredMixin,View):
 
 	def get(self,request,Exam_id):
-		lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
-		context = {
-			'Exam_id':Exam_id,
-			'lop10':lop10,
-		}
-		return render(request, 'pages/thi.html', context)
+		if Exam.objects.filter(Type = "Lop 10"):
+			lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
+			context = {
+				'Exam_id':Exam_id,
+				'lop10':lop10,
+			}
+			return render(request, 'pages/thi_lop10.html', context)
+
 
 	def post(self,request,Exam_id):
-		lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
 		grade = 0
 		rs=0
-		for i in lop10:
-			for key in request.POST:
-				try:
-					key=int(key)
-				except ValueError:
-					continue
-				if i.id == key:
-					for j in request.POST[f"{key}"]:
-						dapan = LOP10.objects.filter(id=int(key)).values()
-						if i.Answer == j:
-							grade=1
-							rs+=1
-						else:
-							grade=0
-						result = Result(
-							User = request.user,
-							Exam = Exam.objects.get(id = int(Exam_id)),
-							question_lop10 = LOP10.objects.get(id=i.id),
-							choice = j,
-							grade = grade,
-						)
-						result.save()
-		print(rs)
-		return HttpResponse("so diem cua ban la: ",rs)
-
-							
-
-		# grade = 0
-		# for i in lop10:
-			# print(i.id,":",i.Answer)
-		# for key,value in request.POST.items():
-		# 	try:
-		# 		key=int(key)
-		# 	except ValueError:
-		# 		continue
-		# 	if Exam.objects.filter(Name = "Lop 10"):
-		# 		lop10 = LOP10.objects.filter(id=int(key)).values()
-		# 		# 	print(" i.id: ",i.id," key: ",key," i.Answer: ",i.Answer," value: ",value)
-		# 			# print(lop10)
-		# 		if lop10[0]['Answer'] == value:
-		# 			grade +=1
-		# 		result = Result(
-		# 			User = request.user,
-		# 			Exam = Exam.objects.get(id = int(Exam_id)),
-		# 			question_lop10 = LOP10.objects.get(id=int(key)),
-		# 			choice = value,
-		# 			grade = grade,
-		# 		)
-		# 		print(result)
-		# 		result.save()
+		if Exam.objects.filter(Type = "Lop 10"):
+			lop10 = LOP10.objects.filter(Exam_id = int(Exam_id))
+			for i in lop10:
+				for key in request.POST:
+					try:
+						key=int(key)
+					except ValueError:
+						continue
+					if i.id == key:
+						for j in request.POST[f"{key}"]:
+							dapan = LOP10.objects.filter(id=int(key)).values()
+							if i.Answer == j:
+								grade=1
+								rs+=1
+							else:
+								grade=0
+							result = Result(
+								User = request.user,
+								Exam = Exam.objects.get(id = int(Exam_id)),
+								question_lop10 = LOP10.objects.get(id=i.id),
+								choice = j,
+								grade = grade,
+							)
+							result.save()
+			return render(request,'pages/exam_result_lop10.html', {'Exam_id':Exam_id,'rs':rs,'lop10':lop10})
 
 
-		# 		if i.id == key:
-		# 			if i.Answer == value:
-		# 				grade += 1
-		# 				print("Ket qua: ",grade)
-		# print(request.POST.items())
+# class ExamForTHPT(LoginRequiredMixin,View):
 
+# 	def get(self,request,Exam_id):
+# 		if Exam.objects.filter(Type = "THPT"):
+# 			thptqg = THPTQG.objects.filter(Exam_id = int(Exam_id))
+# 			context = {
+# 				'Exam_id':Exam_id,
+# 				'thptqg':thptqg,
+# 			}
+# 			return render(request, 'pages/thi_thpt.html', context)
 
-		# for key,value in request.POST.items():
-		# 	print(f"key = {key}")
-		# 	print(f"value = {value}")
-
-		# a = []
-		# for i in question:
-		# 	b = []
-		# 	b.append(i['id'],request.post[i['id']])
-		# 	a.append(b)
-		# for i in a:
-			
-		# rs = request.POST['']
-		# grade = 0
-		# if Exam.objects.filter(Type = "Lop 10"):
-		# 	question = LOP10.objects.get(id = int(question_id))
-		# 	print("iddd",question)
-		# 	luachon = request.POST[str(question)]
-		# 	for i in luachon:
-		# 		dapan = question.Answer
-		# 		print("dapan",dapan)
-		# 		for j in dapan:
-		# 			if i == j:
-		# 				grade += 1
-		# 				return grade
-		# 	Result.objects.create(
-		# 	user = request.user.id,
-		# 	exam = Exam.objects.get(id = Exam_id),
-		# 	question_lop10 = question,
-		# 	choice = luachon,
-		# 	grade = grade,
-		# 	)
-	
-
-
+# 	def post(self,request,Exam_id):
+# 		grade=0
+# 		rs=0
+# 		if Exam.objects.filter(Type = "THPT"):
+# 			thptqg = THPTQG.objects.filter(Exam_id = int(Exam_id))
+# 			for i in thptqg:
+# 				for key in request.POST:
+# 					try:
+# 						key=int(key)
+# 					except ValueError:
+# 						continue
+# 					if i.id == key:
+# 						for j in request.POST[f"{key}"]:
+# 							dapan = THPTQG.objects.filter(id=int(key)).values()
+# 							if i.Answer == j:
+# 								grade=1
+# 								rs+=1
+# 							else:
+# 								grade=0
+# 							result = Result(
+# 								User = request.user,
+# 								Exam = Exam.objects.get(id = int(Exam_id)),
+# 								question_thpt = THPTQG.objects.get(id=i.id),
+# 								choice = j,
+# 								grade = grade,
+# 							)
+# 							result.save()
+# 			return render(request,'pages/exam_result_thpt.html', {'Exam_id':Exam_id,'rs':rs,'thptqg':thptqg})
 
 def exam_delete(request,pk):
 	obj = get_object_or_404(Exam, pk=int(pk))
@@ -352,7 +321,6 @@ def exam_delete(request,pk):
 		obj.delete()
 		return redirect('manage')
 	return render(request, 'manage', {'object':obj})
-
 
 
 def manageView(request):

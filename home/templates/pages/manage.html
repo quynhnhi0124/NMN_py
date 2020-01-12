@@ -5,13 +5,13 @@
     <h1 align=center> Quan ly de thi </h1>
     <div class="row">
         <div class="add-btn">
-            <a href="{% url 'add_exam' %}"><button type="button" class="btn btn-outline-danger" style="float: right; margin: 15px 0;"> + New exam </button></a>
+            <a href="{% url 'add_exam' %}"><button type="button" class="btn btn-outline-dark" style="float: right; margin: 15px 0;"> + New exam </button></a>
         </div>
     </div>
     <div class="row">
-        <table class="table table-striped">
-            <thead>
-                <tr style="background-color: rgb(252, 208, 134);">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
                     <th scope="col">Mã đề thi</th>
                     <th scope="col">Loại đề</th>
                     <th scope="col">Thao tác
@@ -23,15 +23,15 @@
             <tbody>
                 {% for field in exam %}
                 <tr>
-                    <th scope="row"><a href="{% url 'exam_detail' field.id %}">{{ field.Name }}</a></th>
+                    <th scope="row"><a href="{% url 'exam_detail' field.id %}" style="color: black">{{ field.Name }}</a></th>
                     <th scope="row">{{ field.Type }}</th>
                     <form action="{% url 'exam_delete' field.id %}" method="POST">
                         {% csrf_token %}
 
-                        <td><button type="button" class="btn btn-outline-danger"><a href="{% url 'exam_detail' field.id %}">Edit</a></button>&nbsp; &nbsp;
+                        <td><button type="button" class="btn btn-dark"><a href="{% url 'exam_detail' field.id %}">Edit</a></button>&nbsp; &nbsp;
 
 
-                            <input type="submit" value="Delete" class="btn btn-outline-danger">
+                            <input type="submit" value="Delete" class="btn btn-dark">
 
                         </td>
                     </form>
